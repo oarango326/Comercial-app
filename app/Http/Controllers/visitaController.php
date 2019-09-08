@@ -7,6 +7,7 @@ use DB;
 
 use App\Cliente;
 use App\Visita;
+use App\Http\Requests\CreateVisitaRequest;
 
 
 class visitaController extends Controller
@@ -21,7 +22,7 @@ class visitaController extends Controller
         //
       $visitas=Visita::orderBy('proxVisita','asc')
                         ->get();
-      
+
       return view('visitas.index', compact('visitas'));
     }
 
@@ -44,14 +45,14 @@ class visitaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateVisitaRequest $request)
     {
-     
+
         Visita::create($request->all());
         //return $request->all();
 
         //return $cliente;
-        return redirect()->route('visita.index')->with('info','Visita Registrada Correctamente'); 
+        return redirect()->route('visita.index')->with('info','Visita Registrada Correctamente');
         //
     }
 
@@ -64,8 +65,8 @@ class visitaController extends Controller
     public function show($id)
     {
         //
-       $visita=Visita::FindOrFail($id);    
-       return view('visitas.show', compact('visita'));  
+       $visita=Visita::FindOrFail($id);
+       return view('visitas.show', compact('visita'));
     }
 
     /**
@@ -77,7 +78,7 @@ class visitaController extends Controller
     public function edit($id)
     {
         //
-        $visita=Visita::FindOrFail($id);    
+        $visita=Visita::FindOrFail($id);
           return view('visitas.edit', compact('visita'));
     }
 
@@ -88,7 +89,7 @@ class visitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateVisitaRequest $request, $id)
     {
        if(isset($request->estado))
         {
@@ -100,12 +101,12 @@ class visitaController extends Controller
             $visita->estado=0;
             $visita->comentario=$request->comentario;
             $visita->save();
-        }    
-         
+        }
+
         //dd($request);
-       // Visita::FindOrFail($id)->update($request->all());    
-        return redirect()->route('visita.index')->with('info','Visita Actualizada Correctamente'); 
-       
+       // Visita::FindOrFail($id)->update($request->all());
+        return redirect()->route('visita.index')->with('info','Visita Actualizada Correctamente');
+
     }
 
     /**
@@ -119,13 +120,13 @@ class visitaController extends Controller
         //
         //return $id;
         Visita::findOrFail($id)->delete();
-        return redirect()->route('visita.index')->with('info','Visita Eliminada Correctamente'); 
+        return redirect()->route('visita.index')->with('info','Visita Eliminada Correctamente');
     }
 
     public function creavisita($id)
     {
         //
-        $cliente=Cliente::FindOrFail($id);    
+        $cliente=Cliente::FindOrFail($id);
         return view('visitas.createfromcliente', compact('cliente'));
 
     }
@@ -143,7 +144,7 @@ class visitaController extends Controller
                      ->orwhere('cif', 'like', '%'.$request['buscar'].'%')
                      ->orwhere('telefono', 'like', '%'.$request['buscar'].'%')
                      ->get();
-            
+
            // dd($clientes);
             return view('visitas.create', compact('clientes'));
 

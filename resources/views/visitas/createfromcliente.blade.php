@@ -11,16 +11,17 @@
                     <label for="lblcliente">Cliente:</label>{{ $cliente->nombre }}
                 </div>
             </div>
-            
-            <div class="row">    
+
+            <div class="row">
                 <div class="col-sm-12 col-6 ">
                     <label for="lblcliente">Direccion:</label>{{ $cliente->direccion }}
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="col-4">
                     <label for="lblcliente">Proxima Visita:</label>
-                    <input id="proxVisita" name="proxVisita" type="date" class="form-control">
+                    <input id="proxVisita" name="proxVisita" type="date" class="form-control" value="{{old('proxVisita')}}">
+                    <span class="fieldleft">{{$errors->first('proxVisita')}}</span>
                 </div>
             </div>
             <div class="row">
@@ -28,7 +29,8 @@
                     <label for="lblcliente">Comentario:</label>
                 </div>
                 <div class="col-4 col-sm-12">
-                    <textarea class="form-control"  name="comentario" rows="3" id="comentario"></textarea>
+                    <textarea class="form-control"  name="comentario" rows="3"  value="{{old('comentario')}}"></textarea>
+                    <span class="fieldleft">{{$errors->first('comentario')}}</span>
                 </div>
             </div>
             <br>
