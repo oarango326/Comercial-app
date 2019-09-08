@@ -1,0 +1,20 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+label{
+    margin: 5px;
+    font-style: inherit;
+    font-size: 12pt;
+    font-weight: bold;
+}
+.fieldleft{
+	color:red;
+	font-weight: bold;
+}
