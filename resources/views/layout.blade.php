@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/bootstrap/dist/bootstrap.js"></script>
     <title>Gesticomer</title>
 </head>
 <body>
