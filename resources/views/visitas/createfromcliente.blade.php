@@ -1,6 +1,6 @@
 @extends('layout')
 @section('contenido')
-<div class="form-group col-md-8">
+<div class="form-group">
 	<h1>Nueva Visita a Cliente:</h1>
     <form action="{{route('visita.store')}}" method="POST">
     	{{ csrf_field() }}
@@ -13,22 +13,22 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12 col-6 ">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="lblcliente">Direccion:</label>{{ $cliente->direccion }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-6 form-inline">
                     <label for="lblcliente">Proxima Visita:</label>
                     <input id="proxVisita" name="proxVisita" type="date" class="form-control" value="{{old('proxVisita')}}">
                     <span class="fieldleft">{{$errors->first('proxVisita')}}</span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     <label for="lblcliente">Comentario:</label>
                 </div>
-                <div class="col-4 col-sm-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <textarea class="form-control"  name="comentario" rows="3"  value="{{old('comentario')}}"></textarea>
                     <span class="fieldleft">{{$errors->first('comentario')}}</span>
                 </div>

@@ -7,7 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="/bootstrap/dist/bootstrap.js"></script>
     <title>Gesticomer</title>
 </head>
 <body>
@@ -19,7 +18,7 @@
 
 ?>
 <header>
-    <nav class="container navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand {{activa('/')}}" href="/" >Gesticomer</a>
         <!-- Toggler/collapsibe Button -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

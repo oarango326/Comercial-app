@@ -34,10 +34,10 @@
                             <td>
                                 <a href="{{route('clientes.show', $cliente->id)}}">{{ $cliente->nombre }}</a>
                             </td>
-                            <td>
+                            <td class="d-xs-none">
                                 {{ $cliente->cif }}
                             </td>
-                            <td>
+                            <td class="d-xs-none">
                                 {{ $cliente->telefono }}
                             </td>
                             <td >

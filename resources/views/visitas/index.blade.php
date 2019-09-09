@@ -1,15 +1,15 @@
 @extends('layout')
 @section('contenido')
 	<div class="row" >
-        <div class="col-3 d-flex justify-content-start" >
+        <div class="col-xs-3 d-flex justify-content-start" >
                 <h3  style="margin:5px">Visitas</h3>
         </div>
-        <div class="offset-6 col-3 d-flex justify-content-end" >
+        <div class="offset-3 d-flex justify-content-end" >
             <a class="btn btn-primary"  style="margin:5px" href="{{route('visita.create')}}" 
             role="button">Nueva Visita</a>
         </div>
     </div>
-    <div>
+    <div class="table-responsive">
         @if (count($visitas)==0 || is_null($visitas))
             <h3>No hay visitas Registradas</h3>
         @else
@@ -24,6 +24,7 @@
                             <th style="width:20%">Acciones</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($visitas as $visita)
                         <tr>
