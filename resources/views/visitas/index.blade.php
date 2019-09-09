@@ -1,10 +1,10 @@
 @extends('layout')
 @section('contenido')
 	<div class="row" >
-        <div class="col-xs-3 d-flex justify-content-start" >
-                <h3  style="margin:5px">Visitas</h3>
+        <div class="col-xs-3  d-flex justify-content-start" >
+                <h3 style="margin:5px">Visitas</h3>
         </div>
-        <div class="offset-3 d-flex justify-content-end" >
+        <div class="offset-4 offset-lg-8 col-xs-4  d-flex justify-content-end" >
             <a class="btn btn-primary"  style="margin:5px" href="{{route('visita.create')}}" 
             role="button">Nueva Visita</a>
         </div>
