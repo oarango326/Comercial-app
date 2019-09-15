@@ -23,6 +23,7 @@ class CreateTableClientes extends Migration
             $table->string('cp', 5)->nullable();
             $table->string('telefono', 9)->nullable();
             $table->string('email', 100)->nullable();
+            $table->boolean('activo')->unsigned()->default(true);
             $table->timestamps();
         });
     }

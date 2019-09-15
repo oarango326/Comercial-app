@@ -14,7 +14,7 @@
             {!!method_field('PUT')!!}
             {!! csrf_field() !!}
                 <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
                         <label for="lblcliente">Nombre</label>
                         <input type="text" class="form-control" name="Nombre" value="{{$cliente->nombre}}">
                         <span class="fieldleft">{{$errors->first('Nombre')}}</span>
@@ -23,6 +23,10 @@
                         <label for="lblcif">CIF</label>
                         <input type="text" class="form-control" name="Cif" value="{{$cliente->cif}}">
                         <span class="fieldleft">{{$errors->first('Cif')}}</span>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <label for="lblcif">Estado</label>
+                        {{ Form::select('Activo', ['0' => 'Inactivo', '1' => 'Activo'], ($cliente->activo) ? '1' : '0', array('class'=> 'form-control'))}}
                     </div>
                 </div>
                 <div class="row">
@@ -73,4 +77,7 @@
             </form>
         @endif
     </div>
+    <script type="text/javascript">
+        
+    </script>
 @stop

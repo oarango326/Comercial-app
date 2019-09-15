@@ -4,7 +4,7 @@
         <h1>Cliente</h1>
             <div >
                 <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
                         <label for="lblcliente">Nombre</label>
                         <input type="text" class="form-control" name="nombre" value="{{$cliente->nombre}}" disabled>
                     </div>
@@ -12,6 +12,15 @@
                         <label for="lblcif">CIF</label>
                         <input type="text" class="form-control" name="cif" value="{{$cliente->cif}}" disabled>
                     </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <label for="lblcif">Estado</label>
+                        @if($cliente->activo)
+                            <input type="text" class="form-control lblactivo" value="Activo" disabled>
+                        @else
+                            <input type="text" class="form-control lblinactivo" value="Inactivo" disabled>
+                        @endif
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">

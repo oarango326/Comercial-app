@@ -10656,3 +10656,13 @@ label {
   font-weight: bold;
 }
 
+.lblactivo {
+  color: green;
+  font-weight: bold;
+}
+
+.lblinactivo {
+  color: red;
+  font-weight: bold;
+}
+

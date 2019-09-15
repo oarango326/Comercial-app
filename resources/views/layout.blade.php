@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <title>Gesticomer</title>
+    {{-- <title>Gesticomer</title> --}}
+    <title>GESTICOMER</title>
 </head>
 <body>
 <?php

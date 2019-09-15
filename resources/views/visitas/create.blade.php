@@ -7,8 +7,8 @@
 	<div class="container d-flex justify-content-start" >
         <form method="post" action="{{ route('visita.clienteBuscar') }}" class="form-inline">
             {!! csrf_field() !!}
-            <input class="form-control" type="text" style="margin:5px" name="buscar" placeholder="Buscar">
-            <button class="btn btn-primary"  type="submit" style="margin:5px">Buscar Cliente</button>
+            <input class="form-control" type="text" name="buscar" placeholder="Buscar">
+            <button class="btn btn-primary"  type="submit" >Buscar Cliente</button>
         </form>
     </div>
     <div class="container">
@@ -39,7 +39,7 @@
                                 {{ $cliente->telefono }}
                             </td>
                             <td >
-                                <a class="btn btn-primary btn-sm" href="{{route('visita.creavisita', $cliente->id)}}" role="button">Visita</a>
+                                <a class="btn btn-primary btn-sm" href="{{route('visita.creavisita', $cliente->id)}}" role="button">Crear Visita</a>
                             </td>
                         </tr>
                         @endforeach

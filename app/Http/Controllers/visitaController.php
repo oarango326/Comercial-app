@@ -134,21 +134,27 @@ class visitaController extends Controller
     public function clienteBuscar(Request $request)
     {
         //return $request->all();
-       if($request==''){
-            return redirect()->route('visita.index');
+
+       if($request['buscar']==null){
+            $clientes=Cliente::where('activo','=','1')->get();
+            //$clientes=DB::table('clientes')->all();
+            return view('visitas.create', compact('clientes'));
+            //return redirect()->route('visita.index');
         }
         else
-        {
-            $clientes=DB::table('clientes')
-                     ->where('nombre', 'like', '%'.$request['buscar'].'%')
-                     ->orwhere('cif', 'like', '%'.$request['buscar'].'%')
-                     ->orwhere('telefono', 'like', '%'.$request['buscar'].'%')
-                     ->get();
+        { 
+            //$clientes=DB::table('clientes')
+            $clientes=Cliente::where('activo','=','1')
+            ->where('nombre', 'like', '%'.$request['buscar'].'%')
+             ->orwhere('estado','like','%'.$request['buscar'].'%')
+             ->orwhere('ciudad','like','%'.$request['buscar'].'%')
+             ->orwhere('cif', 'like', '%'.$request['buscar'].'%')
+             ->orwhere('telefono', 'like', '%'.$request['buscar'].'%')
+             ->get();
 
-           // dd($clientes);
+
+           //dd($clientes);
             return view('visitas.create', compact('clientes'));
-
-
         //return json_encode($clientes);
         }
     }
