@@ -158,7 +158,9 @@ class clientesController extends Controller
     {
         //return $request->all();
        if($request['buscar']==null){
-            return redirect()->route('clientes.index');
+            $clientes=Cliente::all();
+             return view('clientes.index', compact('clientes'));
+            //return redirect()->route('clientes.index');
         }
         else
         {
