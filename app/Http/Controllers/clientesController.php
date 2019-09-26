@@ -27,7 +27,8 @@ class clientesController extends Controller
         // esto es con query builder
         //$clientes=DB::table('clientes')->get();
         //esto es con Eloquent
-        $clientes=Cliente::all();
+        //return Cliente::paginate(10);
+        $clientes=Cliente::paginate(10);
         return view('clientes.index', compact('clientes'));
     }
 
@@ -158,19 +159,21 @@ class clientesController extends Controller
     {
         //return $request->all();
        if($request['buscar']==null){
-            $clientes=Cliente::all();
-             return view('clientes.index', compact('clientes'));
+            
+            return redirect()->route('clientes.index');
+            //$clientes=Cliente::paginate(10);
+             //return view('clientes.index', compact('clientes'));
             //return redirect()->route('clientes.index');
         }
         else
         {
-            $clientes=DB::table('clientes')
+           $clientes=DB::table('clientes')
              ->where('nombre', 'like', '%'.$request['buscar'].'%')
              ->orwhere('estado','like','%'.$request['buscar'].'%')
              ->orwhere('ciudad','like','%'.$request['buscar'].'%')
              ->orwhere('cif', 'like', '%'.$request['buscar'].'%')
              ->orwhere('telefono', 'like', '%'.$request['buscar'].'%')
-             ->get();
+             ->paginate(10);
 
             //dd($clientes);
             return view('clientes.index', compact('clientes'));

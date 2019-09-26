@@ -48,7 +48,7 @@ Route::delete('cliente/{id}', ['as' => 'clientes.destroy','uses'=> 'clientesCont
 
 
 
-Route::POST('clienteBusca',['as' => 'clientes.textoBuscar','uses'=> 'clientesController@textoBuscar']);
+Route::GET('clienteBusca',['as' => 'clientes.textoBuscar','uses'=> 'clientesController@textoBuscar']);
 Route::POST('visitaBusca',['as' => 'visita.clienteBuscar','uses'=> 'visitaController@clienteBuscar']);
 
 

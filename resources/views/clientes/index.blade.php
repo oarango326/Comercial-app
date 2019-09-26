@@ -5,8 +5,8 @@
                 <h3  style="margin:5px">Clientes</h3>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 justify-content-start" >
-            <form method="post" action="{{ route('clientes.textoBuscar') }}" class="form-inline">
-                {!! csrf_field() !!}
+            <form method="GET" action="{{ route('clientes.textoBuscar') }}" class="form-inline">
+               
                 <input class="form-control" type="text" name="buscar" placeholder="Buscar">
                 <button class="btn btn-primary"  type="submit" style="margin:5px">Buscar</button>
             </form>
@@ -56,12 +56,18 @@
                         @endforeach
                     </tbody>
                 </table>
+
         @endif
+        <div class="justify-content-center">
+            {!! $clientes->appends(['buscar'=> request('buscar')])->links() !!}
+          </div>
+        
         @if(session()->has('info'))
             <script>
                 alert('{{session('info')}}')
             </script>
         @endif
+
     </div>
 @stop
 
