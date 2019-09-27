@@ -46,7 +46,7 @@
     </nav>
 </header>
 
-<div class="container" style="margin-top:65px">
+<div class="container p-3" >
     @yield('contenido')
 </div>
 <div class="container">
