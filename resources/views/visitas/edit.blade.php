@@ -25,7 +25,8 @@
                 <div class="row">
                     <div class="col-6 form-inline">
                         <label for="lblcliente">Proxima Visita:</label>
-                        <input id="proxVisita" name="proxVisita" type="date" class="form-control" value="{{ $visita->proxVisita}}">
+                        <input id="proxVisita" name="proxVisita" type="date" class="form-control" 
+                        value="{{ $visita->proxVisita}}">
                         <span class="fieldleft">{{$errors->first('proxVisita')}}</span>
                     </div>
                 </div>

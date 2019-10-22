@@ -38,7 +38,7 @@
                             	{{ $visita->cliente->direccion }}
                             </td>
                             <td>
-                                {{ $visita->proxVisita }}
+                                {{date('d-M-Y',strtotime($visita->proxVisita))}}
                             </td>
                             <td>
                                 @if($visita->estado==0)

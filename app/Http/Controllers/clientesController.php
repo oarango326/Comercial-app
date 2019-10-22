@@ -49,7 +49,7 @@ class clientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestClientCreate $request)
+    public function store(Request $request)
     {
     //return $request->all();
     DB::table('clientes')->insert([
@@ -64,10 +64,9 @@ class clientesController extends Controller
              "created_at"=>carbon::now(),
              "updated_at"=>carbon::now(),
          ]);
-
-         return redirect()->route('clientes.index');
-      //return 'formulario enviado';
-    
+      //Cliente::create($request->all());
+      return redirect()->route('clientes.index');
+      //return 'formulario enviado';   
     }
 
     /**
@@ -78,10 +77,11 @@ class clientesController extends Controller
      */
     public function show($id)
     {
-        $cliente=DB::table('clientes')->where('id', $id)->first();
+        $cliente=Cliente::FindOrFail($id);
         //return $cliente;
         if($cliente){
-            return view('clientes.showCliente', compact('cliente'));
+            return response()->json($cliente);
+            //return view('clientes.showCliente', compact('cliente'));
         }else{
             return view('errors.clientNotFound');
         }
@@ -97,8 +97,10 @@ class clientesController extends Controller
      */
     public function edit($id)
     {
-        $cliente=DB::table('clientes')->where('id', $id)->first();
+        //$cliente=DB::table('clientes')->where('id', $id)->first();
         //return $cliente;
+
+        $cliente=Cliente::FindOrFail($id);
         if($cliente){
             return view('clientes.editCliente', compact('cliente'));
         }
@@ -113,7 +115,7 @@ class clientesController extends Controller
      */
     public function update(RequestClientCreate $request, $id)
     {
-       // return $request->all();
+        //return $request->all();
         DB::table('clientes')->where('id', $id)->update([
              "nombre" => $request->input('Nombre'),
              "cif" => $request->input('Cif'),
@@ -123,10 +125,13 @@ class clientesController extends Controller
              "cp" => $request->input('CodigoPostal'),
              "telefono" => $request->input('Telefono'),
              "activo"=>$request->input('Activo'),
+             "email"=>$request->input('email'),
              "updated_at"=>carbon::now(),
         ]);
-        return redirect()->route('clientes.edit', $request->id)->with('info','Se Actualizo el registro Correctamente');
-        
+
+        //se reestructuro con Eloquent
+       //Cliente::FindOrFail($id)->update($request->all());
+       return redirect()->route('clientes.edit', $request->id)->with('info','Se Actualizo el registro Correctamente');
     }
 
     /**
@@ -135,8 +140,9 @@ class clientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id=$request->input('id-delete');
        $cliente=DB::table('visitas')
                 ->select('visitas.id','visitas.cliente_id','visitas.proxVisita','visitas.comentario')
                 ->join('clientes', 'clientes.id', '=', 'visitas.cliente_id')

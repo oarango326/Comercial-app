@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                          <label for="lblemail">Email</label>
-                        <input type="email" class="form-control" name="email" value="" >
+                        <input type="email" class="form-control" name="email" value="{{$cliente->email}}" >
                     </div>
                 </div>
                     <div class="row">
@@ -77,7 +77,4 @@
             </form>
         @endif
     </div>
-    <script type="text/javascript">
-        
-    </script>
 @stop
