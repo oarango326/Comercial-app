@@ -19,7 +19,7 @@
 
 ?>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary container">
         <a class="navbar-brand {{activa('/')}}" href="/" >Gesticomer</a>
         <!-- Toggler/collapsibe Button -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -38,6 +38,23 @@
                 <li class="nav-item {{activa('visita*') }}">
                     <a class="nav-link " href="{{route('visita.index')}}">Visitas</a>
                 </li>
+                <li class="nav-item {{activa('cobro*') }}">
+                    <a class="nav-link " href="#">Cobros</a>
+                </li>
+                <li class="nav-item {{activa('tablas*') }}">
+                    <div class="dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#"
+                        role="link" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Tablas
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{route('articulos.index')}}">Articulos</a>
+                            <a class="dropdown-item" href="{{route('fabricantes.index')}}">Fabricantes</a>
+                            <a class="dropdown-item" href="{{route('categorias.index')}}">Categorias</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item {{activa('config*') }}">
                     <a class="nav-link " href="{{route('configuraciones')}}">Configuraciones</a>
                 </li>
@@ -49,10 +66,12 @@
 <div class="container p-3" >
     @yield('contenido')
 </div>
-<div class="container">
-    <footer class="footer">
-           @ {{ now()->year }}
-    </footer>
-</div>
+
+<footer class="page-footer footer font-small pt-4">
+    <div class="container">
+        @ {{ now()->year }}
+    </div>
+</footer>
+
 </body>
 </html>

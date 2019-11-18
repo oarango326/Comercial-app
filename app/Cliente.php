@@ -12,7 +12,11 @@ class Cliente extends Model
 	public function visita()
 	{
 		return $this->hasMany(Visita::class);
-	}
+    }
+
+    public function Cobro(){
+        return $this->hasMany(Cobro::class);
+    }
 
 	protected $fillable = [
         'nombre',
@@ -21,8 +25,8 @@ class Cliente extends Model
         'ciudad',
         'estado',
         'cp',
-        'telefono', 
-        'email', 
-    ];    
+        'telefono',
+        'email',
+    ];
 
 }

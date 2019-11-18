@@ -5,14 +5,16 @@
                 <h3 style="margin:5px">Visitas</h3>
         </div>
         <div class="offset-4 offset-lg-8 col-xs-4  d-flex justify-content-end" >
-            <a class="btn btn-primary"  style="margin:5px" href="{{route('visita.create')}}" 
+            <a class="btn btn-primary"  style="margin:5px" href="{{route('visita.create')}}"
             role="button">Nueva Visita</a>
         </div>
     </div>
+
+    @if (count($visitas)==0 || is_null($visitas))
+        <hr>
+    <h3>No hay visitas Registradas</h3>
+    @else
     <div class="table-responsive">
-        @if (count($visitas)==0 || is_null($visitas))
-            <h3>No hay visitas Registradas</h3>
-        @else
             <table class="table table-striped">
                     <thead>
                         <tr>

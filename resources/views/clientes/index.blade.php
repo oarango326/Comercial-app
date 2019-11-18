@@ -3,11 +3,11 @@
     <div class="row" >
         <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start" >
                 <h3  style="margin:5px">Clientes</h3>
-            
+
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 justify-content-start" >
             <form method="GET" action="{{ route('clientes.textoBuscar') }}" class="form-inline">
-               
+
                 <input class="form-control" type="text" name="buscar" placeholder="Buscar">
                 <button class="btn btn-primary"  type="submit" style="margin:5px">Buscar</button>
             </form>
@@ -17,8 +17,10 @@
                 {{-- <a class="btn btn-primary"  href="{{route('clientes.create')}}" role="button">Nuevo Cliente</a> --}}
         </div>
     </div>
+
     <div>
         @if (count($clientes)==0 || is_null($clientes))
+            <hr>
             <h3>No hay clientes Registrados</h3>
         @else
             <table class="table table-striped">
@@ -48,9 +50,9 @@
                                     {{ $cliente->activo ? '':'Inactivo' }}
                                 </td>
                                 <td >
-                                    
+
                                     <a class="btn btn-primary btn-sm m-1" href="{{route('clientes.edit', $cliente->id)}}" role="button">Modificar</a>
-                                     <button type="button" class="btn btn-danger btn-sm m-1 btnDeleteCliente" data-toggle="modal" data-target="#modalDeleteClient" data-id="{{$cliente->id}}" data-nombre="{{ $cliente->nombre }}"> 
+                                     <button type="button" class="btn btn-danger btn-sm m-1 btnDeleteCliente" data-toggle="modal" data-target="#modalDeleteClient" data-id="{{$cliente->id}}" data-nombre="{{ $cliente->nombre }}">
                                       Eliminar
                                     </button>
                                 </td>
@@ -73,9 +75,9 @@
             $(document).ready(function($) {
                 $('#modalCreateClient').on('click',function() {
                     $("#formModalCreateClient").trigger('reset');
-                });    
+                });
             });
-            
+
         </script>
 
     </div>

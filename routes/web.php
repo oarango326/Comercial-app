@@ -31,7 +31,7 @@ Route::get('creausuario', function(){
 Route::get('configuraciones', ['as'=> 'configuraciones', 'uses' =>'configController@index']);
 
 //Route::post('configuraciones', ['as' => 'config.cargaClienteCSV', 'uses'=>'configController@cargaClienteCSV']);
-Route::post('configuraciones', ['as' => 'config.Clientesimport', 
+Route::post('configuraciones', ['as' => 'config.Clientesimport',
 								'uses'=>'configController@Clientesimport']);
 
 Route::get('home',['as' => 'home','uses'=> 'navController@index' ]);
@@ -54,6 +54,10 @@ Route::POST('visitaBusca',['as' => 'visita.clienteBuscar','uses'=> 'visitaContro
 
 
 Route::resource('visita','visitaController');
+Route::resource('articulos','ArticuloController');
+Route::resource('categorias', 'CategoriaController');
+Route::resource('fabricantes', 'FabricanteController');
+
 
 Route::get('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);
 
