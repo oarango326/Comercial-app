@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cobro;
-use App\Cliente;
-use App\Articulo;
+use App\factura;
 use Illuminate\Http\Request;
 
-class CobroController extends Controller
+class FacturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,6 @@ class CobroController extends Controller
     public function index()
     {
         //
-        $cobros=Cobro::all();
-        return view('cobros.index', compact('cobros'));
     }
 
     /**
@@ -29,8 +25,6 @@ class CobroController extends Controller
     public function create()
     {
         //
-        $clientes=Cliente::orderby('nombre', 'ASC')->get();
-        return view('cobros.create',compact('clientes'));
     }
 
     /**
@@ -42,18 +36,15 @@ class CobroController extends Controller
     public function store(Request $request)
     {
         //
-        // return $request;
-         Cobro::create($request->all());
-         return redirect()->route('cobros.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cobro  $cobro
+     * @param  \App\factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function show(Cobro $cobro)
+    public function show(factura $factura)
     {
         //
     }
@@ -61,10 +52,10 @@ class CobroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cobro  $cobro
+     * @param  \App\factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cobro $cobro)
+    public function edit(factura $factura)
     {
         //
     }
@@ -73,10 +64,10 @@ class CobroController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cobro  $cobro
+     * @param  \App\factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cobro $cobro)
+    public function update(Request $request, factura $factura)
     {
         //
     }
@@ -84,10 +75,10 @@ class CobroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cobro  $cobro
+     * @param  \App\factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cobro $cobro)
+    public function destroy(factura $factura)
     {
         //
     }

@@ -142,7 +142,7 @@ class visitaController extends Controller
             //return redirect()->route('visita.index');
         }
         else
-        { 
+        {
             //$clientes=DB::table('clientes')
             $clientes=Cliente::where('activo','=','1')
             ->where('nombre', 'like', '%'.$request['buscar'].'%')

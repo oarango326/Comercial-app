@@ -12,8 +12,9 @@ $factory->define(Articulo::class, function (Faker $faker) {
         'ean'=>$faker->unique()->numberBetween($min = 10000000, $max = 200000000),
         'nombre'=>$faker->name,
         'img_src'=>$faker->imageUrl($width = 400, $height = 400),
-        'fabricante_id'=>1,
-        'categoria_id'=>1
+        'precio'=>$faker->randomFloat(2,0,101),
+        'fabricante_id'=>$faker->numberBetween(1,10),
+        'categoria_id'=>$faker->numberBetween(1,10)
 
         //'fabricante_id'=>$faker->fabricante_id,
         //'categoria_id'=>$faker->categoria_id

@@ -39,9 +39,9 @@
                     <a class="nav-link " href="{{route('visita.index')}}">Visitas</a>
                 </li>
                 <li class="nav-item {{activa('cobro*') }}">
-                    <a class="nav-link " href="#">Cobros</a>
+                    <a class="nav-link " href="{{route('cobros.index')}}">Cobros</a>
                 </li>
-                <li class="nav-item {{activa('tablas*') }}">
+                <li class="nav-item {{activa('tabla*') }}">
                     <div class="dropdown show">
                         <a class="nav-link dropdown-toggle" href="#"
                         role="link" id="dropdownMenuLink" data-toggle="dropdown"

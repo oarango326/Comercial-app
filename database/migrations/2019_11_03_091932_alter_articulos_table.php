@@ -15,6 +15,7 @@ class AlterArticulosTable extends Migration
     {
         Schema::table('articulos', function (Blueprint $table) {
             //
+            $table->boolean('activo')->unsigned()->default(true)->after('precio');
             $table->bigInteger('categoria_id')->unsigned()->change();
             $table->foreign('fabricante_id')->references('id')->on('fabricantes');
             $table->foreign('categoria_id')->references('id')->on('categorias');
@@ -30,6 +31,7 @@ class AlterArticulosTable extends Migration
     {
         Schema::table('articulos', function (Blueprint $table) {
             //
+            $table->dropColumn(['activo']);
             $table->dropForeign(['fabricante_id']);
 
         });

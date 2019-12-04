@@ -30,6 +30,9 @@ class ArticuloController extends Controller
     public function create()
     {
         //
+        $categorias=Categoria::all();
+        $fabricantes=Fabricante::all();
+        return view('articulos.create', compact('categorias', 'fabricantes') );
     }
 
     /**
@@ -40,8 +43,13 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+
+            Articulo::create($request->all());
+            return redirect()->route('articulos.index');
+
     }
+    
 
     /**
      * Display the specified resource.
@@ -52,6 +60,9 @@ class ArticuloController extends Controller
     public function show(Articulo $articulo)
     {
         //
+        $articulo=Articulo::FindOrFail($articulo->id);
+        //return $articulo;
+         return view('articulos.show', compact('articulo'));
     }
 
     /**
@@ -62,8 +73,14 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
+        $categorias=Categoria::all();
+        $fabricantes=Fabricante::all();
+        $articulo=Articulo::FindOrFail($articulo->id);
+        return view('articulos.edit', compact('articulo','categorias','fabricantes'));
         //
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -74,8 +91,30 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, Articulo $articulo)
     {
-        //
+        //return $request;
+        if(isset($request->activar)){
+            $articulo=Articulo::findorfail($articulo->id);
+            $articulo->activo=$request->activar;
+            $articulo->save();
+            return redirect()->route('articulos.index');
+        }else{
+            try{
+                $articulo=Articulo::findorfail($articulo->id);
+                $articulo->update($request->all());
+                return redirect()
+                    ->route('articulos.edit',$articulo->id)
+                    ->with('success','Articulo Actualizado Exitosamente');
+            }catch(\PDOException $e)
+            {
+                return redirect()
+                    ->route('articulos.edit',$articulo->id)
+                    ->with('error','Ha ocurrido un error: '.$e->getmessage());
+            }
+        }
+
+        // //
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -86,5 +125,8 @@ class ArticuloController extends Controller
     public function destroy(Articulo $articulo)
     {
         //
+       // return $articulo->id;
+       Articulo::findOrfail($articulo->id)->delete();
+       return redirect()->route('articulos.index')->with('info','Articulo Eliminado Correctamente');
     }
 }

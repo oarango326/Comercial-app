@@ -18,6 +18,10 @@ class Cliente extends Model
         return $this->hasMany(Cobro::class);
     }
 
+    public function Factura(){
+        return $this->hasMany(Factura::class);
+    }
+
 	protected $fillable = [
         'nombre',
         'cif',

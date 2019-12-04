@@ -57,6 +57,7 @@ Route::resource('visita','visitaController');
 Route::resource('articulos','ArticuloController');
 Route::resource('categorias', 'CategoriaController');
 Route::resource('fabricantes', 'FabricanteController');
+Route::resource('cobros', 'CobroController');
 
 
 Route::get('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);

@@ -7,7 +7,6 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 justify-content-start" >
             <form method="GET" action="{{ route('clientes.textoBuscar') }}" class="form-inline">
-
                 <input class="form-control" type="text" name="buscar" placeholder="Buscar">
                 <button class="btn btn-primary"  type="submit" style="margin:5px">Buscar</button>
             </form>
@@ -17,8 +16,6 @@
                 {{-- <a class="btn btn-primary"  href="{{route('clientes.create')}}" role="button">Nuevo Cliente</a> --}}
         </div>
     </div>
-
-    <div>
         @if (count($clientes)==0 || is_null($clientes))
             <hr>
             <h3>No hay clientes Registrados</h3>
@@ -49,7 +46,7 @@
                                 <td class="d-xs-none lblinactivo">
                                     {{ $cliente->activo ? '':'Inactivo' }}
                                 </td>
-                                <td >
+                                <td class="form-inline">
 
                                     <a class="btn btn-primary btn-sm m-1" href="{{route('clientes.edit', $cliente->id)}}" role="button">Modificar</a>
                                      <button type="button" class="btn btn-danger btn-sm m-1 btnDeleteCliente" data-toggle="modal" data-target="#modalDeleteClient" data-id="{{$cliente->id}}" data-nombre="{{ $cliente->nombre }}">
@@ -64,7 +61,7 @@
         @endif
         <div class="justify-content-center">
             {!! $clientes->appends(['buscar'=> request('buscar')])->links() !!}
-          </div>
+        </div>
         @if(session()->has('info'))
             <script>
                 alert('{{session('info')}}')
@@ -79,8 +76,6 @@
             });
 
         </script>
-
-    </div>
 @stop
 
 

@@ -8,7 +8,7 @@ class Articulo extends Model
 {
     //
     //protected $table=['Articulos'];
-    //protected $fillable = ['codigo','nombre','ean', 'fabricante_id','categoria_id'];
+    protected $fillable = ['codigo','nombre','ean','precio', 'fabricante_id','categoria_id','activo'];
 
     public function Categoria(){
        return $this->belongsTo(Categoria::class);

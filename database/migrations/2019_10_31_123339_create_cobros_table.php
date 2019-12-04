@@ -17,9 +17,12 @@ class CreateCobrosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('cliente_id')->unsigned();
             $table->string('tipodocumento');
-            $table->string('numdocumento',10)->nullable();
+            $table->string('numdocumento',10)->nullable()->default(0);
             $table->date('fechacobro');
+            $table->date('fechadocumento');
+            $table->string('tipocobro');
             $table->float('monto');
+            $table->float('abono');
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
         });

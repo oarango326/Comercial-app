@@ -1,17 +1,14 @@
 @extends('layout')
 @section('contenido')
-	<div class="container">
-		<h3>Nueva Visita</h3>	
-	</div>
-	
-	<div class="container d-flex justify-content-start" >
-        <form method="post" action="{{ route('visita.clienteBuscar') }}" class="form-inline">
-            {!! csrf_field() !!}
-            <input class="form-control" type="text" name="buscar" placeholder="Buscar">
-            <button class="btn btn-primary"  type="submit" >Buscar Cliente</button>
-        </form>
-    </div>
-    <div class="container">
+	{{-- <div class="container"> --}}
+    <h3>Nueva Visita</h3>
+	{{-- </div> --}}
+	{{-- <div class="container d-flex justify-content-start" > --}}
+    <form method="post" action="{{ route('visita.clienteBuscar') }}" class="form-inline">
+        {!! csrf_field() !!}
+        <input class="form-control m-2" type="text" name="buscar" placeholder="Introduzca un Cliente">
+        <button class="btn btn-primary"  type="submit" >Buscar Cliente</button>
+    </form>
     @if (!isset($clientes))
             <h3>Seleccione un cliente</h3>
     @elseif (count($clientes)==0 || is_null($clientes))
@@ -46,5 +43,4 @@
                     </tbody>
                 </table>
         @endif
-    </div>
 @stop
