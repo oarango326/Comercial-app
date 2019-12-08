@@ -32,7 +32,7 @@
                 @foreach ($cobros as $cobro)
                 <tr>
                     <td>{{$cobro->id}}</td>
-                    <td>{{$cobro->fechacobro}}</td>
+                    <td>{{date('d-M-Y',strtotime($cobro->fechacobro))}}</td>
                     <td>{{$cobro->cliente->nombre}}</td>
                     <td>{{$cobro->monto}}€</td>
                     <td class="form-inline">

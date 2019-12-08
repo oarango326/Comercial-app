@@ -20,7 +20,7 @@ class CreateFacturasTable extends Migration
             $table->bigInteger('fabricante_id')->unsigned();
             $table->bigInteger('cliente_id')->unsigned();
             $table->date('factvence');
-            $table->float('factmonto');
+            $table->float('factmonto',10,2);
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('fabricante_id')->references('id')->on('fabricantes');

@@ -16,8 +16,13 @@ class CreateDetalleCobrosTable extends Migration
         Schema::create('detallecobros', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('cobro_id')->unsigned();
+            $table->bigInteger('articulo_id')->unsigned();
+            $table->float('cantidad',10,2);
+            $table->float('precio',10,2);
+            $table->float('total_linea',10,2);
             $table->timestamps();
             $table->foreign('cobro_id')->references('id')->on('cobros');
+            $table->foreign('articulo_id')->references('id')->on('articulos');
         });
     }
 

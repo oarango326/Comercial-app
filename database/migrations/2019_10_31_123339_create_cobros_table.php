@@ -17,12 +17,13 @@ class CreateCobrosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('cliente_id')->unsigned();
             $table->string('tipodocumento');
+            $table->date('fechadocumento');
             $table->string('numdocumento',10)->nullable()->default(0);
             $table->date('fechacobro');
-            $table->date('fechadocumento');
             $table->string('tipocobro');
-            $table->float('monto');
-            $table->float('abono');
+            $table->float('monto',10,2);
+            $table->float('abono',10,2);
+            $table->float('total',10,2);
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
         });

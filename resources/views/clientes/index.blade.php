@@ -20,7 +20,7 @@
             <hr>
             <h3>No hay clientes Registrados</h3>
         @else
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
                             <th style="width:35%">Nombre</th>
@@ -47,8 +47,9 @@
                                     {{ $cliente->activo ? '':'Inactivo' }}
                                 </td>
                                 <td class="form-inline">
-
-                                    <a class="btn btn-primary btn-sm m-1" href="{{route('clientes.edit', $cliente->id)}}" role="button">Modificar</a>
+                                       <a class="btn btn-primary btn-sm m-1" href="{{route('clientes.edit', $cliente->id)}}" role="button">
+                                            <span class="glyphicon glyphicon-pencil"></span>Modificar
+                                        </a>
                                      <button type="button" class="btn btn-danger btn-sm m-1 btnDeleteCliente" data-toggle="modal" data-target="#modalDeleteClient" data-id="{{$cliente->id}}" data-nombre="{{ $cliente->nombre }}">
                                       Eliminar
                                     </button>

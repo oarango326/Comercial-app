@@ -14,7 +14,8 @@ class Cobro extends Model
                             'fechadocumento',
                             'tipocobro',
                             'monto',
-                            'abono'];
+                            'abono',
+                            'total'];
 
     public function Cliente(){
         return $this->belongsTo(Cliente::class);

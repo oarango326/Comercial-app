@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Cobro;
 use App\Cliente;
 use App\Articulo;
+use App\DetalleCobro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+// use DB;
 
 class CobroController extends Controller
 {
@@ -29,8 +32,9 @@ class CobroController extends Controller
     public function create()
     {
         //
+        $articulos=Articulo::all();
         $clientes=Cliente::orderby('nombre', 'ASC')->get();
-        return view('cobros.create',compact('clientes'));
+        return view('cobros.create',compact('clientes','articulos'));
     }
 
     /**
@@ -42,9 +46,47 @@ class CobroController extends Controller
     public function store(Request $request)
     {
         //
-        // return $request;
-         Cobro::create($request->all());
-         return redirect()->route('cobros.index');
+        //return $request;
+        try{
+            DB::beginTransaction();
+                $cobro=new Cobro();
+                $cobro->cliente_id=$request->cliente_id;
+                $cobro->fechacobro=$request->fechacobro;
+                $cobro->tipodocumento=$request->tipodocumento;
+                $cobro->numdocumento=$request->numdocumento;
+                $cobro->fechadocumento=$request->fechadocumento;
+                $cobro->tipocobro=$request->tipocobro;
+                $cobro->monto=$request->monto;
+                $cobro->abono=$request->abono;
+                $cobro->total=$request->total;
+                $cobro->save();
+
+
+                $articulo_id=$request->articulo_id;
+                $cantidad=$request->cantidad;
+                $precio=$request->precio;
+                $total_linea=$request->total_linea;
+
+                $idaux=$cobro->id;
+                $contador=0;
+                //almacena las lineas detalle del cobro
+                while($contador<count($articulo_id)){
+                    $detallecobro=new DetalleCobro();
+                    $detallecobro->cobro_id=$idaux;
+                    $detallecobro->articulo_id=$articulo_id[$contador];
+                    $detallecobro->cantidad=$cantidad[$contador];
+                    $detallecobro->precio=$precio[$contador];
+                    $detallecobro->total_linea=$total_linea[$contador];
+                    $detallecobro->save();
+                    $contador++;
+                }
+            DB::commit();
+
+        }catch(\Exception $e){
+            DB::rollback();
+            return $e->getmessage();
+        }
+        return redirect()->route('cobros.index');
     }
 
     /**
@@ -56,6 +98,9 @@ class CobroController extends Controller
     public function show(Cobro $cobro)
     {
         //
+        $detallecobro=$cobro->findorfail($cobro->id)->detallecobro()->get();
+        return compact('cobro','detallecobro');
+
     }
 
     /**
@@ -87,8 +132,19 @@ class CobroController extends Controller
      * @param  \App\Cobro  $cobro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cobro $cobro)
+    public function destroy(cobro $cobro)
     {
         //
+        try{
+            DB::beginTransaction(); 
+                $cobro->findorfail($cobro->id)->detallecobro()->delete();
+                $cobro->findorfail($cobro->id)->delete();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollback();
+            return $e->getmessage();
+        }
+        return redirect()->route('cobros.index')->with('info', 'El registro ha sido eliminado');
+
     }
 }

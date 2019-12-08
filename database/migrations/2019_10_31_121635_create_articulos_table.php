@@ -19,7 +19,7 @@ class CreateArticulosTable extends Migration
             $table->string('nombre');
             $table->string('ean')->unique();
             $table->string('img_src')->nullable();
-            $table->float('precio');
+            $table->float('precio',10,2);
             $table->bigInteger('fabricante_id')->unsigned();
             $table->bigInteger('categoria_id');
             $table->timestamps();
