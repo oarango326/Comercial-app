@@ -18,7 +18,7 @@
     <h3>No hay Registros</h3>
     @else
     <div class="row justify-content-center ">
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive-xl table-responsive-sm">
             <thead>
                 <tr>
                     <th style="width:10%">id</th>

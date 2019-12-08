@@ -13,4 +13,8 @@ class DetalleCobro extends Model
     public function Cobro(){
         return $this->hasOne(Cobro::class);
     }
+
+    public function Articulo(){
+        return $this->hasMany(Articulo::class);
+    }
 }

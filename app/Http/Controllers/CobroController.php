@@ -98,9 +98,14 @@ class CobroController extends Controller
     public function show(Cobro $cobro)
     {
         //
-        $detallecobro=$cobro->findorfail($cobro->id)->detallecobro()->get();
-        return compact('cobro','detallecobro');
-
+        $cliente=$cobro->findorfail($cobro->id)->cliente()->get();
+        $detallecobro=DB::table('detallecobros')
+                ->select('detallecobros.cobro_id','detallecobros.articulo_id','articulos.codigo','articulos.nombre','detallecobros.cantidad','detallecobros.precio','detallecobros.total_linea')
+                ->join('articulos', 'articulos.id', '=', 'detallecobros.articulo_id')
+                ->where ('detallecobros.cobro_id','=', $cobro->id)
+                ->get();
+                //return compact('cliente','cobro','detallecobro');
+                return view('cobros.show', compact('cliente','cobro','detallecobro'));
     }
 
     /**
@@ -136,7 +141,7 @@ class CobroController extends Controller
     {
         //
         try{
-            DB::beginTransaction(); 
+            DB::beginTransaction();
                 $cobro->findorfail($cobro->id)->detallecobro()->delete();
                 $cobro->findorfail($cobro->id)->delete();
             DB::commit();

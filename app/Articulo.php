@@ -14,7 +14,7 @@ class Articulo extends Model
        return $this->belongsTo(Categoria::class);
     }
 
-    public function Fabricante(){
-        return $this->belongsTo(Fabricante::class);
+    public function Detallecobro(){
+        return $this->belongsToMany(Detallecobro::class);
      }
 }
