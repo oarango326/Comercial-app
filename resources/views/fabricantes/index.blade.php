@@ -6,7 +6,7 @@
 
         </div>
         <div class="  col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start" >
-                <a class="btn btn-primary m-1"  href="#" role="button">Nuevo Fabricante</a>
+                <a class="btn btn-primary m-1"  href="#" role="button">Nuevo</a>
         </div>
     </div>
 

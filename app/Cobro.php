@@ -24,4 +24,8 @@ class Cobro extends Model
     public function DetalleCobro(){
         return $this->hasMany(DetalleCobro::class);
     }
+
+    public function Factura(){
+        return $this->belongsTo(Factura::class);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\factura;
+use App\Cliente;
+use App\Fabricante;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -12,9 +14,13 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+     public function index()
     {
-        //
+        $fabricantes=Fabricante::all();
+        $facturas=Factura::all();
+        return view('facturas.index', compact('facturas','fabricantes'));
     }
 
     /**
@@ -25,6 +31,9 @@ class FacturaController extends Controller
     public function create()
     {
         //
+        $fabricantes=Fabricante::all();
+        $clientes=Cliente::all();
+        return view('facturas.create', compact('clientes','fabricantes'));
     }
 
     /**
@@ -36,6 +45,10 @@ class FacturaController extends Controller
     public function store(Request $request)
     {
         //
+        //return $request;
+         Factura::create($request->all());
+
+         return redirect()->route('facturas.index')->with('info','Factura Registrada Correctamente');
     }
 
     /**
@@ -81,5 +94,13 @@ class FacturaController extends Controller
     public function destroy(factura $factura)
     {
         //
+        try{
+            Factura::findorfail($factura->id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('facturas.index')->with('info', $e->getmessage());
+        }
+
+        return redirect()->route('facturas.index')->with('info', 'El registro ha sido eliminado');
+
     }
 }

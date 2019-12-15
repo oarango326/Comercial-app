@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,9 @@
                 </li>
                 <li class="nav-item {{activa('visita*') }}">
                     <a class="nav-link " href="{{route('visita.index')}}">Visitas</a>
+                </li>
+                <li class="nav-item {{activa('factura*') }}">
+                    <a class="nav-link " href="{{route('facturas.index')}}">Facturas</a>
                 </li>
                 <li class="nav-item {{activa('cobro*') }}">
                     <a class="nav-link " href="{{route('cobros.index')}}">Cobros</a>

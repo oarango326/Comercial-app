@@ -15,12 +15,12 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('factnum');
-            $table->date('factfecha');
+            $table->string('facnum',15);
+            $table->date('facfecha');
             $table->bigInteger('fabricante_id')->unsigned();
             $table->bigInteger('cliente_id')->unsigned();
-            $table->date('factvence');
-            $table->float('factmonto',10,2);
+            $table->date('facvence')->nullable();
+            $table->float('total',10,2);
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('fabricante_id')->references('id')->on('fabricantes');

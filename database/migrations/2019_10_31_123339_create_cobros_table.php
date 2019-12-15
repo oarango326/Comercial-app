@@ -26,6 +26,7 @@ class CreateCobrosTable extends Migration
             $table->float('total',10,2);
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
+           // $table->foreign('factura_id')->references('id')->on('facturas');
         });
     }
 
