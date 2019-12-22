@@ -11,6 +11,7 @@ class factura extends Model
                             'direccion',
                             'fabricante_id',
                             'facnum',
+                            'tipodoc',
                             'facfecha',
                             'total'];
 

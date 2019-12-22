@@ -25,7 +25,7 @@
 
 
         <div class="offset-3 col-6 offset-3" align="center">
-            <label>Seleccione archivo CSV :</label>
+            <label >Seleccione archivo CSV :</label>
             <input class="form-control" type="file" name="file" required="true" />
             <br />
             <input type="submit" name="submit" value="Importar" class="btn btn-primary"  />

@@ -66,7 +66,7 @@ class clientesController extends Controller
          ]);
       //Cliente::create($request->all());
       return redirect()->route('clientes.index');
-      //return 'formulario enviado';   
+      //return 'formulario enviado';
     }
 
     /**
@@ -148,7 +148,7 @@ class clientesController extends Controller
                 ->join('clientes', 'clientes.id', '=', 'visitas.cliente_id')
                 ->where ('clientes.id', $id)
                 ->get();
-//return $cliente->count();
+        //return $cliente->count();
         if($cliente->count()>0)
         {
             return redirect()->route('clientes.index')->with('info','El cliente No puede ser eliminado posee resistros asociados');
@@ -156,16 +156,16 @@ class clientesController extends Controller
         else
         {
             DB::table('clientes')->where('id', $id)->delete();
-            return redirect()->route('clientes.index')->with('info','Se elimino el registro correctamente');    
+            return redirect()->route('clientes.index')->with('info','Se elimino el registro correctamente');
         }
-        
-    }   
+
+    }
 
     public function textoBuscar(Request $request)
     {
         //return $request->all();
        if($request['buscar']==null){
-            
+
             return redirect()->route('clientes.index');
             //$clientes=Cliente::paginate(10);
              //return view('clientes.index', compact('clientes'));

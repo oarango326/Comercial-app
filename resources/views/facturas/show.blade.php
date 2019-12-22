@@ -1,70 +1,53 @@
 @extends('layout')
 @section('contenido')
 <div>
-    <h3>Nueva Factura</h3>
+<h3>Factura # {{$factura->id}}</h3>
 </div>
 <div>
-    <form action="{{route('facturas.store')}}" method="POST" >
-        {{ csrf_field() }}
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3 form">
-                <label for="lblcliente">Cliente</label>
-                <select name="cliente_id" id="selectcliente" class="form-control "  required>
-                    <option disabled selected value=""> Seleccione un Cliente... </option>
-                    @foreach ($clientes as $cliente)
-                    <option value="{{$cliente->id}}" direccion="{{$cliente->direccion}} {{$cliente->ciudad}} {{$cliente->estado}} {{$cliente->telefono}}">{{$cliente->nombre}}</option>
-                    @endforeach
-                </select>
-                {{-- <button class="btn btn-primary" id="btnSeleccion" role="button">Seleccionar</button> --}}
-            </div>
-            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6 col-xl-6">
-                <label for="lblcliente">Direccion</label>
-                <input type="text"  id="direccion" class="form-control" readonly>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
-                <label for="lblfabricante">Fecha Documento</label>
-                <input type="date" name="facfecha" id="facfecha" class="form-control" required>
-            </div>
-
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 ">
+            <label for="lblcliente">Cliente</label>
+            <input type="text" name="cliente_id" id="cliente_id" class="form-control" value="{{$cliente[0]->nombre}}" readonly>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-4 col-xl-4">
-                <label for="lbltipodocumento">fabricante</label>
-                <select name="fabricante_id" id="fabricante_id" class="form-control" required>
-                    <option disabled selected value=""> Seleccione un fabricante... </option>
-                    @foreach($fabricantes as $fabricante)
-                        <option value="{{$fabricante->id}}">{{$fabricante->nombre}} </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2">
-                <label for="lbltipodocumento">Tipo Documento</label>
-                <select name="tipodoc" id="tipodoc" class="form-control">
-                    <option value="0">FACTURA</option>
-                    <option value="1">ALBARAN</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-md-4 col-lg-2 col-xl-4">
-                <label for="lblnumdocumento">#Nota</label>
-                <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10" required>
-            </div>
-
-            <div class="col-xs-12 col-md-4 col-lg-2 ">
-                <label for="lblmonto">Monto Nota</label>
-                <input  style="text-align: right;" type="text"  name="total" id="total" class="form-control montos" value="0" required>
-             </div>
-             {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
-                <label for="lblsaldo">Monto saldo</label>
-                <input type="text" name="saldo" id="saldo" class="form-control montos calculo" readonly>
-            </div> --}}
-            {{-- <div class="col-xs-12 col-md-4 col-lg-4 ">
-                <label for="lbltipocobro">Tipo Cobro</label>
-                <select name="tipocobro" id="tipocobro" class="form-control">
-                    <option value="efectivo">EFECTIVO</option>
-                    <option value="pagare">PAGARE</option>
-                </select>
-            </div> --}}
+        <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6">
+            <label for="lblclientedireccion">Direccion</label>
+            <input type="text"  id="direccion" class="form-control" value="{{$cliente[0]->direccion }} {{$cliente[0]->estado }} {{$cliente[0]->telefono }}" readonly>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+            <label for="lblfacfecha">Fecha Documento</label>
+            <input type="date" name="facfecha" id="facfecha" class="form-control" value="{{$factura->facfecha}}" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <label for="lblfabricante">Fabricante</label>
+            <input type="text" name="fabricante_id" id="fabricante_id"  class="form-control" value="{{$fabricante[0]->nombre}}" readonly>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2">
+            <label for="lbltipodoc">Tipo Documento</label>
+            <input type="text" name="tipodoc" id="tipodoc" class="form-control" value="{{($factura->tipodoc==0)?"FACTURA":"ALBARAN"}}" readonly>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-2 col-xl-4">
+            <label for="lblfacnum">#Nota</label>
+        <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10" value="{{$factura->facnum}}" readonly>
+        </div>
+
+        <div class="col-xs-12 col-md-4 col-lg-2 ">
+            <label for="lbltotal">Monto Nota</label>
+            <input  style="text-align: right;" type="text"  name="total" id="total" class="form-control montos" value="{{$factura->total}}" readonly>
+            </div>
+            {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
+            <label for="lblsaldo">Monto saldo</label>
+            <input type="text" name="saldo" id="saldo" class="form-control montos calculo" readonly>
+        </div> --}}
+        {{-- <div class="col-xs-12 col-md-4 col-lg-4 ">
+            <label for="lbltipocobro">Tipo Cobro</label>
+            <select name="tipocobro" id="tipocobro" class="form-control">
+                <option value="efectivo">EFECTIVO</option>
+                <option value="pagare">PAGARE</option>
+            </select>
+        </div> --}}
+    </div>
         {{-- <div class="row">
 
             <div class="col-xs-12 col-md-4 col-lg-4 ">
@@ -84,14 +67,12 @@
         </div> --}}
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.index')}}" role="button">Cancelar</a>
+            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.index')}}" role="button">Volver</a>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button type="submit"  class="btn btn-success" style="margin:5px">Guardar</button>
-                {{-- <a class="btn btn-secondary" style="margin:5px" href="{{route('clientes.index')}}" role="button">Cancelar</a> --}}
+            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.edit',$factura->id)}}" role="button">Modificar</a>
             </div>
         </div>
-    </form>
 </div>
 <script>
 

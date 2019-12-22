@@ -8,7 +8,7 @@
 
         {{-- Inicio Encabezado Cobro --}}
         <div class="row">
-            <div class="col-xs-12 col-md-4 col-lg-4 form">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4form">
                 <label for="lblcliente">Cliente</label>
                 <select name="cliente_id" id="selectcliente" class="form-control "  required>
                     <option disabled selected value=""> Seleccione un Cliente... </option>
@@ -18,17 +18,17 @@
                 </select>
                 {{-- <button class="btn btn-primary" id="btnSeleccion" role="button">Seleccionar</button> --}}
             </div>
-            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6">
+            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6 col-xl-6">
                 <label for="lblcliente">Direccion</label>
                 <input type="text" name="direccion" id="direccion" class="form-control" readonly>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
                     <label for="lblcliente">Fecha Cobro</label>
                     <input type="date" name="fechacobro" id="fechacobro" class="form-control" required>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-xl-2">
                 <label for="lbltipodocumento">Tipo Documento</label>
                 <select name="tipodocumento" id="tipodocumento" class="form-control">
                     <option value="fac">FACTURA</option>

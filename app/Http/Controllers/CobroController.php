@@ -98,7 +98,7 @@ class CobroController extends Controller
     public function show(Cobro $cobro)
     {
         //
-        $cliente=$cobro->findorfail($cobro->id)->cliente()->get();
+        $cliente=Cobro::findorfail($cobro->id)->cliente()->get();
         $detallecobro=DB::table('detallecobros')
                 ->select('detallecobros.cobro_id','detallecobros.articulo_id','articulos.codigo','articulos.nombre','detallecobros.cantidad','detallecobros.precio','detallecobros.total_linea')
                 ->join('articulos', 'articulos.id', '=', 'detallecobros.articulo_id')
@@ -142,8 +142,8 @@ class CobroController extends Controller
         //
         try{
             DB::beginTransaction();
-                $cobro->findorfail($cobro->id)->detallecobro()->delete();
-                $cobro->findorfail($cobro->id)->delete();
+                Cobro::findorfail($cobro->id)->detallecobro()->delete();
+                Cobro::findorfail($cobro->id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();

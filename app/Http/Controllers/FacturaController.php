@@ -47,7 +47,6 @@ class FacturaController extends Controller
         //
         //return $request;
          Factura::create($request->all());
-
          return redirect()->route('facturas.index')->with('info','Factura Registrada Correctamente');
     }
 
@@ -59,7 +58,11 @@ class FacturaController extends Controller
      */
     public function show(factura $factura)
     {
-        //
+        $fabricante=$factura->fabricante()->get();
+        $cliente=$factura->Cliente()->get();
+        $factura=Factura::FindOrFail($factura->id);
+      // return [$fabricante,$cliente,$factura];
+       return view('facturas.show', compact('factura','fabricante','cliente'));
     }
 
     /**
@@ -70,7 +73,13 @@ class FacturaController extends Controller
      */
     public function edit(factura $factura)
     {
-        //
+        $clientes=Cliente::all();
+        $fabricantes=Fabricante::all();
+        $fabricante=$factura->fabricante()->get();
+        $cliente=$factura->Cliente()->get();
+        $factura=Factura::FindOrFail($factura->id);
+       //return [$fabricante,$cliente,$factura];
+       return view('facturas.edit', compact('factura','fabricante','cliente','clientes','fabricantes'));
     }
 
     /**
@@ -83,6 +92,8 @@ class FacturaController extends Controller
     public function update(Request $request, factura $factura)
     {
         //
+        $fac=$factura->Findorfail($factura->id)->update($request->all());
+        return redirect()->route('facturas.index')->with('info','Factura Actualizada Correctamente');
     }
 
     /**
@@ -91,11 +102,13 @@ class FacturaController extends Controller
      * @param  \App\factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function destroy(factura $factura)
+    public function destroy(request $request)
     {
         //
+        $id=$request->input('id-delete');
+        //return $request;
         try{
-            Factura::findorfail($factura->id)->delete();
+            Factura::findorfail($id)->delete();
         }catch(\Exception $e){
             return redirect()->route('facturas.index')->with('info', $e->getmessage());
         }

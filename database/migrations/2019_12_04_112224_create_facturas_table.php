@@ -19,8 +19,10 @@ class CreateFacturasTable extends Migration
             $table->date('facfecha');
             $table->bigInteger('fabricante_id')->unsigned();
             $table->bigInteger('cliente_id')->unsigned();
+            $table->string('tipodoc',1);
             $table->date('facvence')->nullable();
             $table->float('total',10,2);
+            $table->float('saldo',10,2)->nullable();
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('fabricante_id')->references('id')->on('fabricantes');
