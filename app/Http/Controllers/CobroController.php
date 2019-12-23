@@ -66,19 +66,21 @@ class CobroController extends Controller
                 $cantidad=$request->cantidad;
                 $precio=$request->precio;
                 $total_linea=$request->total_linea;
-
-                $idaux=$cobro->id;
-                $contador=0;
-                //almacena las lineas detalle del cobro
-                while($contador<count($articulo_id)){
-                    $detallecobro=new DetalleCobro();
-                    $detallecobro->cobro_id=$idaux;
-                    $detallecobro->articulo_id=$articulo_id[$contador];
-                    $detallecobro->cantidad=$cantidad[$contador];
-                    $detallecobro->precio=$precio[$contador];
-                    $detallecobro->total_linea=$total_linea[$contador];
-                    $detallecobro->save();
-                    $contador++;
+                if($articulo_id)
+                {
+                    $idaux=$cobro->id;
+                    $contador=0;
+                    //almacena las lineas detalle del cobro
+                    while($contador<count($articulo_id)){
+                        $detallecobro=new DetalleCobro();
+                        $detallecobro->cobro_id=$idaux;
+                        $detallecobro->articulo_id=$articulo_id[$contador];
+                        $detallecobro->cantidad=$cantidad[$contador];
+                        $detallecobro->precio=$precio[$contador];
+                        $detallecobro->total_linea=$total_linea[$contador];
+                        $detallecobro->save();
+                        $contador++;
+                    }
                 }
             DB::commit();
 

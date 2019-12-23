@@ -5,7 +5,7 @@
 </div>
 <div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 ">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3s">
             <label for="lblcliente">Cliente</label>
             <input type="text" name="cliente_id" id="cliente_id" class="form-control" value="{{$cliente[0]->nombre}}" readonly>
         </div>
@@ -13,7 +13,7 @@
             <label for="lblclientedireccion">Direccion</label>
             <input type="text"  id="direccion" class="form-control" value="{{$cliente[0]->direccion }} {{$cliente[0]->estado }} {{$cliente[0]->telefono }}" readonly>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
             <label for="lblfacfecha">Fecha Documento</label>
             <input type="date" name="facfecha" id="facfecha" class="form-control" value="{{$factura->facfecha}}" readonly>
         </div>
@@ -221,4 +221,9 @@
 
 
 </script>
+@if(session()->has('info'))
+<script>
+    alert('{{session('info')}}')
+</script>
+@endif
 @stop

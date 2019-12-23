@@ -48,11 +48,11 @@ class visitaController extends Controller
     public function store(CreateVisitaRequest $request)
     {
 
-        Visita::create($request->all());
+        $visita=Visita::create($request->all());
         //return $request->all();
 
         //return $cliente;
-        return redirect()->route('visita.index')->with('info','Visita Registrada Correctamente');
+        return redirect()->route('visita.show', $visita->id)->with('info','Visita Registrada Correctamente');
         //
     }
 
@@ -105,7 +105,7 @@ class visitaController extends Controller
 
         //dd($request);
        // Visita::FindOrFail($id)->update($request->all());
-        return redirect()->route('visita.index')->with('info','Visita Actualizada Correctamente');
+        return redirect()->route('visita.show',$id)->with('info','Visita Actualizada Correctamente');
 
     }
 

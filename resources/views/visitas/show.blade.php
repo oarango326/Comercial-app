@@ -18,12 +18,12 @@
                     @endif
                 </div>
             </div>
-            <div class="row">    
+            <div class="row">
                 <div class="col-12 ">
                     <label for="lblcliente">Direccion:</label>{{ $visita->cliente->direccion }}
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="col-6 form-inline">
                     <label for="lblcliente">Proxima Visita:</label>
                     <input id="proxVisita" name="proxVisita" type="date" class="form-control" value="{{ $visita->proxVisita }}" disabled="true" >
@@ -49,4 +49,9 @@
     	</div>
     </form>
 </div>
+    @if(session()->has('info'))
+        <script>
+            alert('{{session('info')}}')
+        </script>
+    @endif
 @stop

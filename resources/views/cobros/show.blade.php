@@ -60,7 +60,7 @@
         {{-- Fin Encabezado Cobro --}}
         {{-- Detalle de Abono  --}}
         <div class="row" id="divDetalleAbono" style="margin-top:5px" >
-
+            @if(count($detallecobro)>0)
             <table id="tablaDetalleAbono" class="table table-striped  ">
                 <thead>
                     <th>Articulo</th>
@@ -81,6 +81,12 @@
                     @endforeach
                 </tbody>
             </table>
+            @else
+                <div class="align-content-center">
+                    <h4 class="align-content-center">No posee detalles este cobro</h4>
+                </div>
+
+            @endif
         </div>
         {{-- Fin Detalle de Abono --}}
         <div class="row">
@@ -154,4 +160,10 @@
 
 </script>
 {{-- Fun Funciones JavaScript Jquery --}}
+@if(session()->has('info'))
+    <script>
+        alert('{{session('info')}}')
+    </script>
+@endif
+
 @stop

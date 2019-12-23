@@ -46,8 +46,8 @@ class FacturaController extends Controller
     {
         //
         //return $request;
-         Factura::create($request->all());
-         return redirect()->route('facturas.index')->with('info','Factura Registrada Correctamente');
+         $factura=Factura::create($request->all());
+         return redirect()->route('facturas.show',$factura->id)->with('info','Factura Registrada Correctamente');
     }
 
     /**
@@ -93,7 +93,7 @@ class FacturaController extends Controller
     {
         //
         $fac=$factura->Findorfail($factura->id)->update($request->all());
-        return redirect()->route('facturas.index')->with('info','Factura Actualizada Correctamente');
+        return redirect()->route('facturas.show',$factura->id)->with('info','Factura Actualizada Correctamente');
     }
 
     /**

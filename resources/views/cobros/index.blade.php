@@ -63,8 +63,8 @@
     </div>
 @endif
 @if(session()->has('info'))
-            <script>
-                alert('{{session('info')}}')
-            </script>
-        @endif
+    <script>
+        alert('{{session('info')}}')
+    </script>
+@endif
 @stop
