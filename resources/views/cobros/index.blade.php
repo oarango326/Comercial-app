@@ -70,5 +70,5 @@
         alert('{{session('info')}}')
     </script>
 @endif
-@include('cobros.cobrosmodal')
+@include('cobros.cobrosModal')
 @stop

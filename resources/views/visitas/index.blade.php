@@ -67,5 +67,5 @@
             </script>
         @endif
     </div>
-    @include('visitas.visitasmodal')
+    @include('visitas.visitasModal')
 @stop
