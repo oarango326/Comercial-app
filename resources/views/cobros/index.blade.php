@@ -37,11 +37,14 @@
                     <td>{{$cobro->monto}}€</td>
                     <td class="form-inline">
                         <a href="{{route('cobros.show',$cobro->id )}}" class="btn btn-primary btn-sm m-1 align-content-end">Ver</a>
-                        <form action="{{route('cobros.destroy', $cobro->id )}}" method="post">
+                        {{-- <form action="{{route('cobros.destroy', $cobro->id )}}" method="post">
                             {!!method_field('DELETE')!!}
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-danger btn-sm m-1 align-content-end">Borrar</button>
-                        </form>
+                        </form> --}}
+                        <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal" data-target="#modalDelete" data-id="{{$cobro->id}}" data-nombre="">
+                            Eliminar
+                          </button>
                     </td>
                     {{-- <div class="card" style="width: 18rem; margin:5px">
                         <img src="{{$cobro->img_src}}" class="card-img-top" alt="...">
@@ -67,4 +70,5 @@
         alert('{{session('info')}}')
     </script>
 @endif
+@include('cobros.cobrosmodal')
 @stop

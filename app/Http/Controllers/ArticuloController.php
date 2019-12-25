@@ -49,7 +49,7 @@ class ArticuloController extends Controller
             return redirect()->route('articulos.index');
 
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -122,11 +122,18 @@ class ArticuloController extends Controller
      * @param  \App\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Articulo $articulo)
+    public function destroy(request $request)
     {
         //
-       // return $articulo->id;
-       Articulo::findOrfail($articulo->id)->delete();
-       return redirect()->route('articulos.index')->with('info','Articulo Eliminado Correctamente');
+        $id=$request->input('id-delete');
+        //return $request;
+        try{
+            Articulo::findOrfail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('articulos.index')->with('info', $e->getmessage());
+        }
+
+        return redirect()->route('articulos.index')->with('info', 'El registro ha sido eliminado');
+
     }
 }

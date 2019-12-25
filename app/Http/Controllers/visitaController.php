@@ -115,12 +115,19 @@ class visitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
         //
-        //return $id;
-        Visita::findOrFail($id)->delete();
-        return redirect()->route('visita.index')->with('info','Visita Eliminada Correctamente');
+        $id=$request->input('id-delete');
+        //return $request;
+        try{
+            Visita::findOrfail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('visita.index')->with('info', $e->getmessage());
+        }
+
+        return redirect()->route('visita.index')->with('info', 'El registro ha sido eliminado');
+
     }
 
     public function creavisita($id)

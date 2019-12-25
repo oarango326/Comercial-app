@@ -139,17 +139,18 @@ class CobroController extends Controller
      * @param  \App\Cobro  $cobro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cobro $cobro)
+    public function destroy(request $request)
     {
+        $id=$request->input('id-delete');
         //
         try{
             DB::beginTransaction();
-                Cobro::findorfail($cobro->id)->detallecobro()->delete();
-                Cobro::findorfail($cobro->id)->delete();
+                Cobro::findorfail($id)->detallecobro()->delete();
+                Cobro::findorfail($id)->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
-            return $e->getmessage();
+            return redirect()->route('cobros.index')->with('info', $e->getmessage());
         }
         return redirect()->route('cobros.index')->with('info', 'El registro ha sido eliminado');
 

@@ -47,12 +47,14 @@
                                 @endif
                         </form>
 
-                        <form action="{{route('articulos.destroy', $articulo->id )}}" method="post">
+                        {{-- <form action="{{route('articulos.destroy', $articulo->id )}}" method="post">
                             {!!method_field('DELETE')!!}
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-danger btn-sm m-1 align-content-end">Borrar</button>
-                        </form>
-
+                        </form> --}}
+                        <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal" data-target="#modalDelete" data-id="{{$articulo->id}}" data-nombre="{{$articulo->codigo}} {{$articulo->nombre}}">
+                            Eliminar
+                          </button>
                     </td>
                     {{-- <div class="card" style="width: 18rem; margin:5px">
                         <img src="{{$articulo->img_src}}" class="card-img-top" alt="...">
@@ -74,9 +76,10 @@
     </div>
 @endif
 @if(session()->has('info'))
-            <script>
-                alert('{{session('info')}}')
-            </script>
-        @endif
+    <script>
+        alert('{{session('info')}}')
+    </script>
+@endif
+@include('articulos.ArticulosModal')
 @stop
 

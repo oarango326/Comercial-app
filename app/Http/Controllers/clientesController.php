@@ -140,26 +140,42 @@ class clientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    // public function destroy(Request $request)
+    // {
+    //     $id=$request->input('id-delete');
+    //    $cliente=DB::table('visitas')
+    //             ->select('visitas.id','visitas.cliente_id','visitas.proxVisita','visitas.comentario')
+    //             ->join('clientes', 'clientes.id', '=', 'visitas.cliente_id')
+    //             ->where ('clientes.id', $id)
+    //             ->get();
+    //     //return $cliente->count();
+    //     if($cliente->count()>0)
+    //     {
+    //         return redirect()->route('clientes.index')->with('info','El cliente No puede ser eliminado posee resistros asociados');
+    //     }
+    //     else
+    //     {
+    //         DB::table('clientes')->where('id', $id)->delete();
+    //         return redirect()->route('clientes.index')->with('info','Se elimino el registro correctamente');
+    //     }
+
+    // }
+
+    public function destroy(request $request)
     {
+        //
         $id=$request->input('id-delete');
-       $cliente=DB::table('visitas')
-                ->select('visitas.id','visitas.cliente_id','visitas.proxVisita','visitas.comentario')
-                ->join('clientes', 'clientes.id', '=', 'visitas.cliente_id')
-                ->where ('clientes.id', $id)
-                ->get();
-        //return $cliente->count();
-        if($cliente->count()>0)
-        {
-            return redirect()->route('clientes.index')->with('info','El cliente No puede ser eliminado posee resistros asociados');
-        }
-        else
-        {
-            DB::table('clientes')->where('id', $id)->delete();
-            return redirect()->route('clientes.index')->with('info','Se elimino el registro correctamente');
+        //return $request;
+        try{
+            Cliente::findOrfail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('clientes.index')->with('info', 'El cliente No puede ser eliminado posee registros asociados');
         }
 
+        return redirect()->route('clientes.index')->with('info', 'El registro ha sido eliminado');
+
     }
+
 
     public function textoBuscar(Request $request)
     {

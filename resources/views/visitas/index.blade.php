@@ -51,11 +51,9 @@
                             </td>
                             <td >
                                 @if($visita->estado==0)
-                                	<form action="{{route('visita.destroy', $visita->id)}}" style="display:inline" method="POST">
-                                        {!!method_field('DELETE')!!}
-                                         {!! csrf_field() !!}
-                                            <button class="btn btn-danger btn-sm" type="submit" >Eliminar</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal" data-target="#modalDelete" data-id="{{$visita->id}}" data-nombre="">
+                                    Eliminar
+                                  </button>
                                 @endif
                             </td>
                         </tr>
@@ -69,4 +67,5 @@
             </script>
         @endif
     </div>
+    @include('visitas.visitasmodal')
 @stop
