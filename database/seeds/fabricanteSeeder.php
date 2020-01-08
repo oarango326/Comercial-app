@@ -13,6 +13,6 @@ class fabricanteSeeder extends Seeder
     public function run()
     {
         //
-        factory(Fabricante::class, 10)->create();
+        factory(Fabricante::class, 1)->create();
     }
 }

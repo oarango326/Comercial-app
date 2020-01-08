@@ -95,7 +95,7 @@
                             <select id="selectarticulo" class="form-control ">
                                 <option disabled selected value=""> Seleccione un Articulo... </option>
                                 @foreach ($articulos as $articulo)
-                            <option value="{{$articulo->id}}" precio="{{$articulo->precio}}" >{{$articulo->codigo}} - {{$articulo->nombre}}</option>
+                            <option value="{{$articulo->id}}" precio="{{$articulo->precio}}" >{{$articulo->ean}} - {{$articulo->nombre}}</option>
                                 @endforeach
                             </select>
                         </td>

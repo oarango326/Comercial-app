@@ -11,16 +11,32 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <label for="lblcliente">Codigo</label>
+                            <label for="lblnombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" value="{{$articulo->nombre}}" disabled>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label for="lblcodigo">Codigo</label>
                             <input type="text" class="form-control" name="codigo" value="{{$articulo->codigo}}" disabled>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <label for="lblcif">EAN</label>
+                            <label for="lblena">EAN</label>
                             <input type="text" class="form-control" name="ean" value="{{$articulo->ean}}" disabled>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <label for="lblcif">Precio</label>
+                            <label for="lblprecio">Precio</label>
                             <input type="text" class="form-control" name="precio" value="{{str_replace(".",",",$articulo->precio)}}€" disabled>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label for="lblcategoria">Categoria</label>
+                            <input type="text" class="form-control" name="categoria" value="{{$articulo->categoria->nombre}}" disabled>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label for="lblfabricante">Fabricante</label>
+                            <input type="text" class="form-control" name="fabricante" value="{{$articulo->fabricante->nombre}}" disabled>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <label for="lblestado">Estado</label>
+                            <input type="text" class="form-control" name="estado" value="{{($articulo->activo)?"Activo":"Inactivo"}}" disabled>
                         </div>
                     </div>
                 </div>

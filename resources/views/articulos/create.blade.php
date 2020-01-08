@@ -10,6 +10,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 custom-file">
                                 <img src="{{url('/images/NO_IMG_600x600.png')}}" alt="" width="300" height="300">
                                 <input type="file" name="imgupload" id="imgupload" class="form-control">
+                                >
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

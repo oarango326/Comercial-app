@@ -3,10 +3,9 @@
     <div class="row" >
         <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start" >
                 <h3  style="margin:5px">Fabricantes</h3>
-
         </div>
         <div class="  col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start" >
-                <a class="btn btn-primary m-1"  href="#" role="button">Nuevo</a>
+            <a class="btn btn-primary m-1"  href="{{route('fabricantes.create')}}" role="button">Nuevo Fabricante</a>
         </div>
     </div>
 
@@ -18,8 +17,8 @@
             <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th style="width:10%">id</th>
-                            <th style="width:70%">nombre</th>
+                            <th style="width:10%">Id</th>
+                            <th style="width:70%">Nombre</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,13 +28,15 @@
                                     {{$fabricante->id}}
                                 </td>
                                 <td class="d-xs-none">
-                                        {{$fabricante->nombre}}
+                                    <a href="{{route('fabricantes.show',$fabricante->id)}}">{{$fabricante->nombre}}</a>
                                 </td>
                                 <td >
-                                    <a class="btn btn-primary btn-sm m-1" href="#" role="button">Modificar</a>
-                                     <button type="button" class="btn btn-danger btn-sm m-1">
-                                      Eliminar
-                                    </button>
+                                    {{-- <a class="btn btn-primary btn-sm m-1" href="{{route('fabricantes.show',$fabricante->id)}}" role="button">Ver</a> --}}
+                                    <a class="btn btn-primary btn-sm m-1" href="{{route('fabricantes.edit',$fabricante->id)}}" role="button">Modificar</a>
+                                    <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal" data-target="#modalDelete" data-id="{{$fabricante->id}}" data-nombre="{{$fabricante->nombre}}">
+                                        Eliminar
+                                      </button>
+                                </td>
                                 </td>
                             </tr>
                         @endforeach
@@ -48,5 +49,6 @@
                 alert('{{session('info')}}')
             </script>
         @endif
+        @include('fabricantes.fabricanteModal')
     </div>
 @stop

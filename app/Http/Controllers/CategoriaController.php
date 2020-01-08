@@ -28,6 +28,7 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+        return view('categorias.create');
     }
 
     /**
@@ -39,6 +40,9 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $categoria=Categoria::create($request->all());
+        return redirect()->route('categorias.show',$categoria->id)
+        ->with('info','Registro almacenado Correctamente');
     }
 
     /**
@@ -50,6 +54,8 @@ class CategoriaController extends Controller
     public function show(Categoria $categoria)
     {
         //
+        $categoria=Categoria::findorfail($categoria->id);
+        return view('categorias.show', compact('categoria'));
     }
 
     /**
@@ -61,6 +67,8 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         //
+        $categoria=Categoria::findorfail($categoria->id);
+        return view('categorias.edit', compact('categoria'));
     }
 
     /**
@@ -73,6 +81,10 @@ class CategoriaController extends Controller
     public function update(Request $request, Categoria $categoria)
     {
         //
+        Categoria::findorfail($categoria->id)->update($request->all());
+        return redirect()->route('categorias.show',$categoria->id)
+        ->with('info',"Registro almacenado correctamente");
+
     }
 
     /**
@@ -81,8 +93,18 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Request $request)
     {
         //
+        $id=$request->input('id-delete');
+        //return $request;
+        try{
+            Categoria::findorfail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('categorias.index')->with('info', 'No puede ser eliminado posee registros asociados');;
+        }
+
+        return redirect()->route('categorias.index')->with('info', 'El registro ha sido eliminado');
+
     }
 }

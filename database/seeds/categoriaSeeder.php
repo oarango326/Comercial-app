@@ -14,6 +14,6 @@ class categoriaSeeder extends Seeder
         //
         //Categoria::truncate();
        // $categoria=new Categoria();
-        factory(Categoria::class, 10)->create();
+        factory(Categoria::class, 1)->create();
     }
 }

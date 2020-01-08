@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\factura;
 use App\Cliente;
 use App\Fabricante;
+use DB;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -32,7 +33,7 @@ class FacturaController extends Controller
     {
         //
         $fabricantes=Fabricante::all();
-        $clientes=Cliente::all();
+        $clientes=Cliente::orderby('nombre','ASC')->get();
         return view('facturas.create', compact('clientes','fabricantes'));
     }
 
@@ -73,7 +74,7 @@ class FacturaController extends Controller
      */
     public function edit(factura $factura)
     {
-        $clientes=Cliente::all();
+        $clientes=Cliente::orderby('nombre','ASC')->get();
         $fabricantes=Fabricante::all();
         $fabricante=$factura->fabricante()->get();
         $cliente=$factura->Cliente()->get();
@@ -93,7 +94,8 @@ class FacturaController extends Controller
     {
         //
         $fac=$factura->Findorfail($factura->id)->update($request->all());
-        return redirect()->route('facturas.show',$factura->id)->with('info','Factura Actualizada Correctamente');
+        return redirect()->route('facturas.show',$factura->id)
+        ->with('info','Factura Actualizada Correctamente');
     }
 
     /**
@@ -110,10 +112,12 @@ class FacturaController extends Controller
         try{
             Factura::findorfail($id)->delete();
         }catch(\Exception $e){
-            return redirect()->route('facturas.index')->with('info', $e->getmessage());
+            return redirect()->route('facturas.index')
+            ->with('info', $e->getmessage());
         }
 
-        return redirect()->route('facturas.index')->with('info', 'El registro ha sido eliminado');
+        return redirect()->route('facturas.index')
+        ->with('info', 'El registro ha sido eliminado');
 
     }
 }

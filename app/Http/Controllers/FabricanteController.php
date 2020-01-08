@@ -28,6 +28,7 @@ class FabricanteController extends Controller
     public function create()
     {
         //
+        return view('fabricantes.create');
     }
 
     /**
@@ -38,7 +39,9 @@ class FabricanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fabricante=Fabricante::create($request->all());
+        return redirect()->route('fabricantes.show',$fabricante->id)
+        ->with('info',"Registro almacenado correctamente");
     }
 
     /**
@@ -50,6 +53,9 @@ class FabricanteController extends Controller
     public function show(Fabricante $fabricante)
     {
         //
+        $fabricante=Fabricante::findorfail($fabricante->id);
+        return view('fabricantes.show',compact('fabricante'));
+
     }
 
     /**
@@ -61,6 +67,10 @@ class FabricanteController extends Controller
     public function edit(Fabricante $fabricante)
     {
         //
+        $fabricante=Fabricante::findorfail($fabricante->id);
+        //return $fabricante;
+        return view('fabricantes.edit',compact('fabricante'));
+
     }
 
     /**
@@ -73,6 +83,10 @@ class FabricanteController extends Controller
     public function update(Request $request, Fabricante $fabricante)
     {
         //
+        Fabricante::findorfail($fabricante->id)->update($request->all());
+        return redirect()->route('fabricantes.show',$fabricante->id)
+        ->with('info',"Registro almacenado correctamente");
+
     }
 
     /**
@@ -81,8 +95,18 @@ class FabricanteController extends Controller
      * @param  \App\Fabricante  $fabricante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fabricante $fabricante)
+    public function destroy(Request $request)
     {
         //
+        $id=$request->input('id-delete');
+        //return $request;
+        try{
+            Fabricante::findorfail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->route('fabricantes.index')->with('info', 'No puede ser eliminado posee registros asociados');;
+        }
+
+        return redirect()->route('fabricantes.index')->with('info', 'El registro ha sido eliminado');
+
     }
 }

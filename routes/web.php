@@ -31,8 +31,8 @@ Route::get('creausuario', function(){
 Route::get('configuraciones', ['as'=> 'configuraciones', 'uses' =>'configController@index']);
 
 //Route::post('configuraciones', ['as' => 'config.cargaClienteCSV', 'uses'=>'configController@cargaClienteCSV']);
-Route::post('configuraciones', ['as' => 'config.Clientesimport',
-								'uses'=>'configController@Clientesimport']);
+Route::post('configuraciones', ['as' => 'config.tablesImport',
+								'uses'=>'configController@tablesImport']);
 
 Route::get('home',['as' => 'home','uses'=> 'navController@index' ]);
 

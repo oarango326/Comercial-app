@@ -14,11 +14,11 @@
 </div>
 
 @if (count($facturas)==0 || is_null($facturas))
-<hr>
+    <hr>
     <h3>No hay Registros</h3>
     @else
     <div class="row justify-content-center ">
-        <table class="table table-striped table-responsive-xl table-responsive-sm">
+        <table class="table table-striped ">
             <thead>
                 <tr>
                     <th style="width:5%">id</th>

@@ -85,7 +85,7 @@
                     <br>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-start">
-                                <a class="btn btn-primary align" style="margin:5px"  href="{{route('articulos.index')}}" role="button">Volver</a>
+                                <a class="btn btn-primary align" style="margin:5px"  href="{{route('articulos.show', $articulo->id )}}" role="button">Volver</a>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                                 <input type="submit" class="btn btn-primary align" style="margin:5px"  role="button" value="Actualizar">

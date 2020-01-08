@@ -84,7 +84,7 @@
         </div> --}}
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.index')}}" role="button">Cancelar</a>
+            <a class="btn btn-primary" style="margin:5px"  href="{{route('facturas.index')}}" role="button">Cancelar</a>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <button type="submit"  class="btn btn-success" style="margin:5px">Guardar</button>
