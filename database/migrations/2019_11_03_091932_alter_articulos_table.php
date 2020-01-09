@@ -15,6 +15,7 @@ class AlterArticulosTable extends Migration
     {
         Schema::table('articulos', function (Blueprint $table) {
             //
+
             $table->integer('articulo_id')->after('id')->nullable();
             $table->string('detalle')->after('nombre')->nullable()->default('');
             $table->boolean('activo')->unsigned()->default(true)->after('precio');
