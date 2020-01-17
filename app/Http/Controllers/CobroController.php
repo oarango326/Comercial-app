@@ -6,6 +6,7 @@ use App\Cobro;
 use App\Cliente;
 use App\Articulo;
 use App\DetalleCobro;
+use App\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 // use DB;
@@ -50,6 +51,7 @@ class CobroController extends Controller
         try{
             DB::beginTransaction();
                 $cobro=new Cobro();
+
                 $cobro->cliente_id=$request->cliente_id;
                 $cobro->fechacobro=$request->fechacobro;
                 $cobro->tipodocumento=$request->tipodocumento;
@@ -59,8 +61,8 @@ class CobroController extends Controller
                 $cobro->monto=$request->monto;
                 $cobro->abono=$request->abono;
                 $cobro->total=$request->total;
+                $cobro->factura_id=$request->factura_id;
                 $cobro->save();
-
 
                 $articulo_id=$request->articulo_id;
                 $cantidad=$request->cantidad;
@@ -82,6 +84,12 @@ class CobroController extends Controller
                         $contador++;
                     }
                 }
+                if($request->factura_id){
+                    $factura=Factura::findorfail($request->factura_id);
+                    $factura->saldo=$factura->saldo-($cobro->total+$cobro->abono);
+                    $factura->save();
+                }
+
             DB::commit();
 
         }catch(\Exception $e){
@@ -102,7 +110,7 @@ class CobroController extends Controller
         //
         $cliente=Cobro::findorfail($cobro->id)->cliente()->get();
         $detallecobro=DB::table('detallecobros')
-                ->select('detallecobros.cobro_id','detallecobros.articulo_id','articulos.codigo','articulos.nombre','detallecobros.cantidad','detallecobros.precio','detallecobros.total_linea')
+                ->select('Articulos.ean','detallecobros.cobro_id','detallecobros.articulo_id','articulos.codigo','articulos.nombre','detallecobros.cantidad','detallecobros.precio','detallecobros.total_linea')
                 ->join('articulos', 'articulos.id', '=', 'detallecobros.articulo_id')
                 ->where ('detallecobros.cobro_id','=', $cobro->id)
                 ->get();
@@ -145,8 +153,17 @@ class CobroController extends Controller
         //
         try{
             DB::beginTransaction();
-                Cobro::findorfail($id)->detallecobro()->delete();
-                Cobro::findorfail($id)->delete();
+                $detallecobro=Cobro::findorfail($id)->detallecobro();
+                $cobro=Cobro::findorfail($id);
+
+                if($cobro->factura_id){
+                    $factura=Factura::findorfail($cobro->factura_id);
+                    $factura->saldo=$factura->saldo+($cobro->total+$cobro->abono);
+                    $factura->save();
+                }
+
+                $detallecobro->delete();
+                $cobro->delete();
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
@@ -154,5 +171,17 @@ class CobroController extends Controller
         }
         return redirect()->route('cobros.index')->with('info', 'El registro ha sido eliminado');
 
+    }
+
+    public function FacturasCliente(Cliente $cliente)
+    {
+        $facturasCliente=Cliente::findorfail($cliente->id)
+        ->factura()->where('saldo','>',0)->get();
+        if(empty($facturasCliente)){
+            return response('',400);
+        }
+        else{
+            return $facturasCliente;
+        }
     }
 }

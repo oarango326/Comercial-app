@@ -50,7 +50,7 @@ Route::delete('cliente/{id}', ['as' => 'clientes.destroy','uses'=> 'clientesCont
 
 Route::GET('clienteBusca',['as' => 'clientes.textoBuscar','uses'=> 'clientesController@textoBuscar']);
 Route::POST('visitaBusca',['as' => 'visita.clienteBuscar','uses'=> 'visitaController@clienteBuscar']);
-
+Route::get('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);
 
 
 Route::resource('visita','visitaController');
@@ -61,7 +61,9 @@ Route::resource('cobros', 'CobroController');
 Route::resource('facturas', 'FacturaController');
 
 
-Route::get('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);
+Route::get('facturasCliente/{cliente}', 'CobroController@FacturasCliente');
+
+
 
 Route::get('login',['as' => 'login','uses'=> 'auth\LoginController@showLoginForm']);
 Route::post('login','auth\LoginController@login');

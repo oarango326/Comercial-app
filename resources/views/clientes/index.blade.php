@@ -3,7 +3,6 @@
     <div class="row" >
         <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start" >
                 <h3  style="margin:5px">Clientes</h3>
-
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 justify-content-start" >
             <form method="GET" action="{{ route('clientes.textoBuscar') }}" class="form-inline">
@@ -20,7 +19,7 @@
             <hr>
             <h3>No hay clientes Registrados</h3>
         @else
-            <table class="table table-striped table-responsive">
+            <table class="table table-striped">
                     <thead>
                         <tr>
                             <th style="width:35%">Nombre</th>

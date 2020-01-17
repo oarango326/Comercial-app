@@ -28,7 +28,7 @@ class clientesController extends Controller
         //$clientes=DB::table('clientes')->get();
         //esto es con Eloquent
         //return Cliente::paginate(10);
-        $clientes=Cliente::paginate(10);
+        $clientes=Cliente::orderby('nombre','ASC')->paginate(10);
         return view('clientes.index', compact('clientes'));
     }
 
@@ -195,7 +195,7 @@ class clientesController extends Controller
              ->orwhere('ciudad','like','%'.$request['buscar'].'%')
              ->orwhere('cif', 'like', '%'.$request['buscar'].'%')
              ->orwhere('telefono', 'like', '%'.$request['buscar'].'%')
-             ->paginate(10);
+             ->orderby('nombre','asc')->paginate(10);
 
             //dd($clientes);
             return view('clientes.index', compact('clientes'));

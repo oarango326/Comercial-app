@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" style="margin:5px">Guardar</button>
@@ -186,7 +186,7 @@
                error :function(jqXHR, exception)
                 {
                     if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';   
+                        msg = 'Requested page not found. [404]';
                         console.log(msg);
                     }
                 }
@@ -202,5 +202,5 @@
             $('#modalDeleteClient').find('#id-delete').val(id)
         });
     });
-    
+
 </script>

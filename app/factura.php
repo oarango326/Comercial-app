@@ -13,7 +13,8 @@ class factura extends Model
                             'facnum',
                             'tipodoc',
                             'facfecha',
-                            'total'];
+                            'total',
+                            'saldo'];
 
     public function Cliente(){
         return $this->belongsTo(Cliente::class);

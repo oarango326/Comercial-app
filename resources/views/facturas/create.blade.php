@@ -44,7 +44,7 @@
                     <option value="1">ALBARAN</option>
                 </select>
             </div>
-            <div class="col-xs-12 col-md-4 col-lg-2 col-xl-4">
+            <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
                 <label for="lblnumdocumento">#Nota</label>
                 <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10" required>
             </div>
@@ -52,6 +52,10 @@
             <div class="col-xs-12 col-md-4 col-lg-2 ">
                 <label for="lblmonto">Monto Nota</label>
                 <input  style="text-align: right;" type="text"  name="total" id="total" class="form-control montos" value="0" required>
+             </div>
+             <div class="col-xs-12 col-md-4 col-lg-2 ">
+                <label for="lblsaldo">Saldo Pendiente</label>
+                <input  style="text-align: right;" type="text"  name="saldo" id="saldo" class="form-control montos" value="0" readonly required>
              </div>
              {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
                 <label for="lblsaldo">Monto saldo</label>
@@ -100,6 +104,10 @@
     $(function(){
         $('#divDetalleAbono').hide();
         $('#btnDetalleAbono').text('Agregar Detalle Abono');
+    })
+
+    $('#total').keyup(function(){
+        $('#saldo').val($(this).val());
     })
 
 

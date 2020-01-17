@@ -10,40 +10,40 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4form">
                 <label for="lblcliente">Cliente</label>
-                <select name="cliente_id" id="selectcliente" class="form-control "  required>
+                <select name="cliente_id" id="selectcliente" class="form-control " data-href="{{ url("/api/facturasCliente/")}}"  required>
                     <option disabled selected value=""> Seleccione un Cliente... </option>
                     @foreach ($clientes as $cliente)
-                    <option value="{{$cliente->id}}" direccion="{{$cliente->direccion}} {{$cliente->ciudad}} {{$cliente->estado}} {{$cliente->telefono}}">{{$cliente->nombre}}</option>
+                    <option value="{{$cliente->id}}" direccion="{{$cliente->direccion}} {{$cliente->ciudad}} {{$cliente->estado}} {{$cliente->telefono}}" >{{$cliente->nombre}}</option>
                     @endforeach
                 </select>
                 {{-- <button class="btn btn-primary" id="btnSeleccion" role="button">Seleccionar</button> --}}
             </div>
-            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-5 col-xl-6">
                 <label for="lblcliente">Direccion</label>
                 <input type="text" name="direccion" id="direccion" class="form-control" readonly>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
                     <label for="lblcliente">Fecha Cobro</label>
                     <input type="date" name="fechacobro" id="fechacobro" class="form-control" required>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 col-xl-2">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" id="divtipodocumento">
                 <label for="lbltipodocumento">Tipo Documento</label>
                 <select name="tipodocumento" id="tipodocumento" class="form-control">
-                    <option value="fac">FACTURA</option>
-                    <option value="alb">ALBARAN</option>
+                    <option value="1">FACTURA</option>
+                    <option value="0">ALBARAN</option>
                 </select>
             </div>
-            <div class="col-xs-12 col-md-4 col-lg-4 form">
+            <div class="col-xs-12 col-md-3 col-lg-3 col-xl-3" id="divnumdocumento">
                 <label for="lblnumdocumento">#Nota</label>
                 <input type="text" name="numdocumento" id="numdocumento" class="form-control" maxlength="10" required>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" id="divfechadocumento">
                 <label for="lblcliente">Fecha Documento</label>
                 <input type="date" name="fechadocumento" id="fechadocumento" class="form-control" required>
             </div>
-            <div class="col-xs-12 col-md-4 col-lg-4 ">
+            <div class="col-xs-12 col-md-3 col-lg-3 col-xl-3">
                 <label for="lbltipocobro">Tipo Cobro</label>
                 <select name="tipocobro" id="tipocobro" class="form-control">
                     <option value="efectivo">EFECTIVO</option>
@@ -62,9 +62,10 @@
             </div>
             <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
                 <label for="lbltotal">Total cobrado</label>
-                <input type="text" name="total" id="total"
-                class="form-control montos" value="0" readonly>
+                <input type="text" name="total" id="total" class="form-control montos" value="0" readonly>
+                <input type="hidden" name="factura_id" id="factura_id">
             </div>
+
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-start">
@@ -113,7 +114,7 @@
 
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-                    <a class="btn btn-primary align" style="margin:5px"  href="#" role="button">Volver</a>
+                    <a class="btn btn-primary align" style="margin:5px"  href="{{route('cobros.index')}}" role="button">Volver</a>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <button type="submit"  class="btn btn-success" style="margin:5px">Guardar</button>
@@ -125,6 +126,84 @@
 
 {{-- Funciones JavaScript JQuery --}}
 <script>
+
+// inicio ajax
+$(document).ready(function(){
+        $("#selectcliente").change(function(){
+            console.log('Seleccionando');
+            let url=$(this).attr("data-href");
+            let id=$(this).find('option:selected').val();
+            let tipodoc=$("#tipodocumento");
+            let numdoc=$('#numdocumento');
+            let fecdoc=$('#fechadocumento');
+            let monto=$('#monto');
+            let abono=$('#abono');
+            let factura_id=$('#factura_id');
+            let selector=document.createElement('select');
+            let opciones=document.createElement('option');
+
+            $.ajax({
+                type: "get",
+                url: url+'/'+id,
+                data: "data",
+                dataType: "json",
+                success: function (data) {
+
+                    if(data!=''){
+                        console.log(data)
+                        tipodoc.attr('readonly','true');
+                        numdoc.attr('disabled','disabled');
+                        fecdoc.attr('readonly','true');
+                        monto.attr('readonly','true')
+
+                        $("#divnumdocumento").children('#numdocumento').hide();
+                        $("#divnumdocumento").append(selector);
+                        $("#divnumdocumento select").addClass('form-control').attr({name:'numdocumento',id:'numdocumento'} ).addClass('facturas');
+                        $.each(data, function (i, e) {
+                            $("#divnumdocumento select")
+                            .append('<option factura='+e.id+' facmonto='+e.total+' facsaldo='+e.saldo+'  facfecha='+e.facfecha+' tipodoc='+e.tipodoc+' value='+e.facnum+'>'+e.facnum+'</option>');
+                        });
+                        fecdoc.val($('.facturas').find('option:selected').eq(0).attr('facfecha'));
+                        tipodoc.val($('.facturas').find('option:selected').eq(0).attr('tipodoc'));
+                        monto.val($('.facturas').find('option:selected').eq(0).attr('facsaldo'));
+                        factura_id.val($('.facturas').find('option:selected').eq(0).attr('factura'))
+                        calculatotal()
+                        $('.facturas').change(function(){
+                            fecdoc.val($(this).find('option:selected').attr('facfecha'));
+                            tipodoc.val($(this).find('option:selected').attr('tipodoc'));
+                            monto.val($(this).find('option:selected').attr('facsaldo'));
+                            factura_id.val($(this).find('option:selected').attr('factura'))
+                            //console.log($(this).find('option:selected').val());
+                            calculatotal()
+                        })
+
+                    }else{
+                        tipodoc.removeAttr('readonly');
+                        tipodoc.val('1')
+                        numdoc.removeAttr('disabled');
+                        fecdoc.removeAttr('readonly');
+                        fecdoc.val('')
+                        monto.removeAttr('readonly')
+                        monto.val('0')
+                        abono.val('0')
+                        factura_id.val('')
+                        $("#divnumdocumento").children('#numdocumento').show();
+                        $("#divnumdocumento select").remove();
+                        calculatotal()
+                    }
+                },
+               error :function(jqXHR, exception)
+                {
+                    if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                        console.log(msg);
+                    }
+                }
+           });
+        });
+    });
+// fin Ajax
+
 
 
     //habilita/deshabilita Detalle Abono

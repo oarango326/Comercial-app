@@ -1,11 +1,11 @@
 @extends('layout')
 @section('contenido')
     <div class="row" >
-        <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start" >
+        <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 justify-content-start" >
                 <h3  style="margin:5px">Categorias</h3>
         </div>
-        <div class="  col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start" >
-        <a class="btn btn-primary m-1"  href="{{route('categorias.create')}}" role="button">Nueva Categoria</a>
+        <div class="  col-xs-6 col-sm-3 col-lg-3 offset-6 justify-content-start" >
+            <a class="btn btn-primary m-1"  href="{{route('categorias.create')}}" role="button">Nueva Categoria</a>
         </div>
     </div>
 
@@ -20,6 +20,7 @@
                         <tr>
                             <th style="width:10%">Id</th>
                             <th style="width:70%">Nombre</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

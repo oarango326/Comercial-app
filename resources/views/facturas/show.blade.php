@@ -27,7 +27,7 @@
             <label for="lbltipodoc">Tipo Documento</label>
             <input type="text" name="tipodoc" id="tipodoc" class="form-control" value="{{($factura->tipodoc==0)?"FACTURA":"ALBARAN"}}" readonly>
         </div>
-        <div class="col-xs-12 col-md-4 col-lg-2 col-xl-4">
+        <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
             <label for="lblfacnum">#Nota</label>
         <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10" value="{{$factura->facnum}}" readonly>
         </div>
@@ -35,7 +35,11 @@
         <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lbltotal">Monto Nota</label>
             <input  style="text-align: right;" type="text"  name="total" id="total" class="form-control montos" value="{{$factura->total}}" readonly>
-            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-2 ">
+            <label for="lbltotal">Saldo Pendiente</label>
+            <input  style="text-align: right;" type="text"  name="saldo" id="saldo" class="form-control montos" value="{{$factura->saldo}}" readonly>
+        </div>
             {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lblsaldo">Monto saldo</label>
             <input type="text" name="saldo" id="saldo" class="form-control montos calculo" readonly>

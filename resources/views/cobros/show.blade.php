@@ -72,7 +72,7 @@
                 <tbody>
                     @foreach ($detallecobro as $detalle)
                     <tr>
-                        <td>{{$detalle->codigo}} - {{$detalle->nombre}}</td>
+                        <td>{{$detalle->ean}} - {{$detalle->nombre}}</td>
                         <td>{{$detalle->cantidad}} </td>
                         <td>{{$detalle->precio}} </td>
                         <td>{{$detalle->total_linea}} </td>

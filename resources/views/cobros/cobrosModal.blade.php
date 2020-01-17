@@ -26,7 +26,7 @@
 
   <!-- fin Modal Client Delete-->
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
         $(".btnDelete").click(function() {
             var id=$(this).attr('data-id')
             var nombre=$(this).attr('data-nombre')
@@ -34,4 +34,44 @@ $(document).ready(function() {
             $('#modalDelete').find('#id-delete').val(id)
         });
     });
+    $(document).ready(function(){
+        $(".btnshowclient").on("click", function(){
+            var id=$(this).attr("data-id");
+            var url=$(this).attr("data-href");
+            $.ajax({
+                type: "get",
+                url: url,
+                data: "data",
+                dataType: "json",
+                success: function (data) {
+                        $("#modalTxtNombre").html(data.nombre);
+                        $("#modalTxtCif").val(data.cif);
+                        $("#modalTxtDireccion").val(data.direccion);
+                        $("#modalTxtCiudad").val(data.ciudad);
+                        $("#modalTxtProvincia").val(data.estado);
+                        $("#modalTxtCodigoPostal").val(data.cp);
+                        $("#modalTxtEmail").val(data.email);
+                        $("#modalTxtTelefono").val(data.telefono);
+                        if(data.activo=="0"){
+                            //console.log("el valor es="+data.activo);
+                            $("#modalTxtActivo").val("Inactivo")
+                            .addClass("lblinactivo");
+                        }
+                        if(data.activo=="1"){
+                            //console.log("el valor es="+data.activo);
+                            $("#modalTxtActivo").val("Activo")
+                            .addClass("lblactivo");
+                        }
+                },
+               error :function(jqXHR, exception)
+                {
+                    if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                        console.log(msg);
+                    }
+                }
+           });
+        });
+    });
+
 </script>
