@@ -6,7 +6,8 @@
     </div>
     <div>
         <form action="{{route('facturas.store')}}" method="POST">
-            {{ csrf_field() }}
+            {{-- {{ csrf_field() }} --}}
+            @csrf
             <div class="row">
                 <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3 form">
                     <label for="lblcliente">Cliente</label>

@@ -65,7 +65,7 @@ class clientesController extends Controller
              "updated_at"=>carbon::now(),
          ]);
       //Cliente::create($request->all());
-      return redirect()->route('clientes.index');
+      return redirect()->route('clientes.index')->with('info', "Cliente Creado Correctamente");
       //return 'formulario enviado';
     }
 

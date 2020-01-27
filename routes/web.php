@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 //use app\User;
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,7 @@ Route::delete('cliente/{id}', ['as' => 'clientes.destroy','uses'=> 'clientesCont
 
 Route::GET('clienteBusca',['as' => 'clientes.textoBuscar','uses'=> 'clientesController@textoBuscar']);
 Route::POST('visitaBusca',['as' => 'visita.clienteBuscar','uses'=> 'visitaController@clienteBuscar']);
-Route::get('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);
+Route::GET('visitaNueva/{id}', ['as'=>'visita.creavisita', 'uses'=>'visitaController@creavisita']);
 
 
 Route::resource('visita','visitaController');

@@ -1,6 +1,11 @@
 @extends('layout')
 @section('contenido')
 <div class="container">
+    @if(session()->has('info'))
+    <div id="session" class="alert alert-success" role="alert">
+        <span>{{session('info')}}</span>
+    </div>
+    @endif
     <div class="row">
         <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start">
             <h3 style="margin:5px">Clientes</h3>
@@ -68,11 +73,11 @@
     <div class="justify-content-center">
         {!! $clientes->appends(['buscar'=> request('buscar')])->links() !!}
     </div>
-    @if(session()->has('info'))
+    {{-- @if(session()->has('info'))
     <script>
         alert('{{session('info')}}')
     </script>
-    @endif
+    @endif --}}
     @include('clientes.clienteModal')
 </div>
 <script>
@@ -82,5 +87,7 @@
                 });
             });
 
+
+            setTimeout( "$('#session').hide();", 4000);
 </script>
 @stop

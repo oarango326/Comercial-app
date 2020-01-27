@@ -6,8 +6,8 @@
     </div>
     <div>
         @if(session()->has('info'))
-        <div class="alert alert-success" role="alert">
-            {{session('info')}}
+        <div id="session" class="alert alert-success" role="alert">
+            <span>{{session('info')}}</span>
         </div>
         @endif
         <div class="row">

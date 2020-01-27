@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
     {{-- <title>Gesticomer</title> --}}
     <title>GESTICOMER</title>
+
 </head>
 
 <body>
@@ -19,6 +20,7 @@
             return  request()->is($url)? 'active': '';
         }
     ?>
+<div id="app" class="d-flex flex-column justify-content-between">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-primary container">
             <a class="navbar-brand {{activa('/')}}" href="/">Gesticomer</a>
@@ -47,7 +49,7 @@
                     </li>
                     <li class="nav-item ">
                         <div class="dropdown show">
-                            <a class="nav-link dropdown-toggle {{activa('tabla*') }}" href="#" role="link"
+                            <a class="nav-link dropdown-toggle" href="#" role="link"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tablas
                             </a>
@@ -68,14 +70,16 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="py-3">
         @yield('contenido')
     </main>
-    <footer class="page-footer footer font-small pt-4">
-        <div class="container">
-            @ {{ now()->year }}
+    <footer class=" text-center text-black-50 py-3 shadow">
+        <div>
+           Copyright @ {{ now()->year }}
         </div>
     </footer>
+</div>
 </body>
+
 
 </html>

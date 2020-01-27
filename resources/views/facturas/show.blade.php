@@ -2,6 +2,11 @@
 @section('contenido')
 <div class="container">
     <div>
+        @if(session()->has('info'))
+        <div id="session" class="alert alert-success" role="alert">
+            <span>{{session('info')}}</span>
+        </div>
+        @endif
         <h3>Factura # {{$factura->id}}</h3>
     </div>
     <div>
@@ -9,7 +14,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3s">
                 <label for="lblcliente">Cliente</label>
                 <input type="text" name="cliente_id" id="cliente_id" class="form-control"
-                    value="{{$cliente[0]->nombre}}" readonly>
+                     value="{{$cliente[0]->nombre}}" readonly>
             </div>
             <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6">
                 <label for="lblclientedireccion">Direccion</label>
@@ -232,12 +237,12 @@
         return true;
     }
 
-
+    setTimeout( "$('#session').hide();", 4000);
 
 </script>
-@if(session()->has('info'))
+{{-- @if(session()->has('info'))
 <script>
     alert('{{session('info')}}')
 </script>
-@endif
+@endif --}}
 @stop
