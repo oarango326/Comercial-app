@@ -1,57 +1,66 @@
 @extends('layout')
 @section('contenido')
-<div>
-<h3>Factura # {{$factura->id}}</h3>
-</div>
-<div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3s">
-            <label for="lblcliente">Cliente</label>
-            <input type="text" name="cliente_id" id="cliente_id" class="form-control" value="{{$cliente[0]->nombre}}" readonly>
-        </div>
-        <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6">
-            <label for="lblclientedireccion">Direccion</label>
-            <input type="text"  id="direccion" class="form-control" value="{{$cliente[0]->direccion }} {{$cliente[0]->estado }} {{$cliente[0]->telefono }}" readonly>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
-            <label for="lblfacfecha">Fecha Documento</label>
-            <input type="date" name="facfecha" id="facfecha" class="form-control" value="{{$factura->facfecha}}" readonly>
-        </div>
+<div class="container">
+    <div>
+        <h3>Factura # {{$factura->id}}</h3>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-            <label for="lblfabricante">Fabricante</label>
-            <input type="text" name="fabricante_id" id="fabricante_id"  class="form-control" value="{{$fabricante[0]->nombre}}" readonly>
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3s">
+                <label for="lblcliente">Cliente</label>
+                <input type="text" name="cliente_id" id="cliente_id" class="form-control"
+                    value="{{$cliente[0]->nombre}}" readonly>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-8 col-lg-6">
+                <label for="lblclientedireccion">Direccion</label>
+                <input type="text" id="direccion" class="form-control"
+                    value="{{$cliente[0]->direccion }} {{$cliente[0]->estado }} {{$cliente[0]->telefono }}" readonly>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                <label for="lblfacfecha">Fecha Documento</label>
+                <input type="date" name="facfecha" id="facfecha" class="form-control" value="{{$factura->facfecha}}"
+                    readonly>
+            </div>
         </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2">
-            <label for="lbltipodoc">Tipo Documento</label>
-            <input type="text" name="tipodoc" id="tipodoc" class="form-control" value="{{($factura->tipodoc==0)?"FACTURA":"ALBARAN"}}" readonly>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
-            <label for="lblfacnum">#Nota</label>
-        <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10" value="{{$factura->facnum}}" readonly>
-        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <label for="lblfabricante">Fabricante</label>
+                <input type="text" name="fabricante_id" id="fabricante_id" class="form-control"
+                    value="{{$fabricante[0]->nombre}}" readonly>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2">
+                <label for="lbltipodoc">Tipo Documento</label>
+                <input type="text" name="tipodoc" id="tipodoc" class="form-control"
+                    value="{{($factura->tipodoc==0)?"FACTURA":"ALBARAN"}}" readonly>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
+                <label for="lblfacnum">#Nota</label>
+                <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10"
+                    value="{{$factura->facnum}}" readonly>
+            </div>
 
-        <div class="col-xs-12 col-md-4 col-lg-2 ">
-            <label for="lbltotal">Monto Nota</label>
-            <input  style="text-align: right;" type="text"  name="total" id="total" class="form-control montos" value="{{$factura->total}}" readonly>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-2 ">
-            <label for="lbltotal">Saldo Pendiente</label>
-            <input  style="text-align: right;" type="text"  name="saldo" id="saldo" class="form-control montos" value="{{$factura->saldo}}" readonly>
-        </div>
+            <div class="col-xs-12 col-md-4 col-lg-2 ">
+                <label for="lbltotal">Monto Nota</label>
+                <input style="text-align: right;" type="text" name="total" id="total" class="form-control montos"
+                    value="{{$factura->total}}" readonly>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-2 ">
+                <label for="lbltotal">Saldo Pendiente</label>
+                <input style="text-align: right;" type="text" name="saldo" id="saldo" class="form-control montos"
+                    value="{{$factura->saldo}}" readonly>
+            </div>
             {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lblsaldo">Monto saldo</label>
             <input type="text" name="saldo" id="saldo" class="form-control montos calculo" readonly>
         </div> --}}
-        {{-- <div class="col-xs-12 col-md-4 col-lg-4 ">
+            {{-- <div class="col-xs-12 col-md-4 col-lg-4 ">
             <label for="lbltipocobro">Tipo Cobro</label>
             <select name="tipocobro" id="tipocobro" class="form-control">
                 <option value="efectivo">EFECTIVO</option>
                 <option value="pagare">PAGARE</option>
             </select>
         </div> --}}
-    </div>
+        </div>
         {{-- <div class="row">
 
             <div class="col-xs-12 col-md-4 col-lg-4 ">
@@ -71,16 +80,17 @@
         </div> --}}
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.index')}}" role="button">Volver</a>
+                <a class="btn btn-primary align" style="margin:5px" href="{{route('facturas.index')}}"
+                    role="button">Volver</a>
             </div>
             <div class="col-6 d-flex justify-content-end">
-            <a class="btn btn-primary align" style="margin:5px"  href="{{route('facturas.edit',$factura->id)}}" role="button">Modificar</a>
+                <a class="btn btn-primary align" style="margin:5px" href="{{route('facturas.edit',$factura->id)}}"
+                    role="button">Modificar</a>
             </div>
         </div>
+    </div>
 </div>
 <script>
-
-
     //habilita/deshabilita Detalle Abono
     $(function(){
         $('#divDetalleAbono').hide();

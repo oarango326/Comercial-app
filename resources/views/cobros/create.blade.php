@@ -1,19 +1,23 @@
 @extends('layout')
 @section('contenido')
-<div>
-    <h3>Nuevo Cobro</h3>
-</div>
-    <form action="{{route('cobros.store')}}" method="POST" >
+<div class="container">
+    <div>
+        <h3>Nuevo Cobro</h3>
+    </div>
+    <form action="{{route('cobros.store')}}" method="POST">
         {{ csrf_field() }}
 
         {{-- Inicio Encabezado Cobro --}}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4form">
                 <label for="lblcliente">Cliente</label>
-                <select name="cliente_id" id="selectcliente" class="form-control " data-href="{{ url("/api/facturasCliente/")}}"  required>
+                <select name="cliente_id" id="selectcliente" class="form-control "
+                    data-href="{{ url("/api/facturasCliente/")}}" required>
                     <option disabled selected value=""> Seleccione un Cliente... </option>
                     @foreach ($clientes as $cliente)
-                    <option value="{{$cliente->id}}" direccion="{{$cliente->direccion}} {{$cliente->ciudad}} {{$cliente->estado}} {{$cliente->telefono}}" >{{$cliente->nombre}}</option>
+                    <option value="{{$cliente->id}}"
+                        direccion="{{$cliente->direccion}} {{$cliente->ciudad}} {{$cliente->estado}} {{$cliente->telefono}}">
+                        {{$cliente->nombre}}</option>
                     @endforeach
                 </select>
                 {{-- <button class="btn btn-primary" id="btnSeleccion" role="button">Seleccionar</button> --}}
@@ -23,8 +27,8 @@
                 <input type="text" name="direccion" id="direccion" class="form-control" readonly>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
-                    <label for="lblcliente">Fecha Cobro</label>
-                    <input type="date" name="fechacobro" id="fechacobro" class="form-control" required>
+                <label for="lblcliente">Fecha Cobro</label>
+                <input type="date" name="fechacobro" id="fechacobro" class="form-control" required>
             </div>
         </div>
         <div class="row">
@@ -53,23 +57,23 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2 ">
-                    <label for="lblmonto">Monto Nota</label>
-                    <input type="text" name="monto" id="monto" class="form-control montos calculo" value="0">
+                <label for="lblmonto">Monto Nota</label>
+                <input type="text" name="monto" id="monto" class="form-control montos calculo decimales" value="0">
             </div>
             <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2 ">
-                    <label for="lblmontoabono">Monto Abono</label>
-                    <input type="text" name="abono" id="abono" class="form-control montos calculo" value="0" >
+                <label for="lblmontoabono">Monto Abono</label>
+                <input type="text" name="abono" id="abono" class="form-control montos calculo decimales" value="0">
             </div>
             <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
                 <label for="lbltotal">Total cobrado</label>
-                <input type="text" name="total" id="total" class="form-control montos" value="0" readonly>
+                <input type="text" name="total" id="total" class="form-control montos decimales" value="0" readonly>
                 <input type="hidden" name="factura_id" id="factura_id">
             </div>
 
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-start">
-                    <button type="button" id="btnDetalleAbono" class="btn btn-secondary m-2" role="button"></button>
+                <button type="button" id="btnDetalleAbono" class="btn btn-secondary m-2" role="button"></button>
             </div>
         </div>
 
@@ -77,9 +81,9 @@
 
         {{-- Detalle de Abono  --}}
 
-        <div class="row" id="divDetalleAbono" style="margin-top:5px" >
+        <div class="row" id="divDetalleAbono" style="margin-top:5px">
 
-        {{--  --}}
+            {{--  --}}
             <table id="tablaDetalleAbono" class="table table-striped  ">
                 <thead>
 
@@ -96,14 +100,16 @@
                             <select id="selectarticulo" class="form-control ">
                                 <option disabled selected value=""> Seleccione un Articulo... </option>
                                 @foreach ($articulos as $articulo)
-                            <option value="{{$articulo->id}}" precio="{{$articulo->precio}}" >{{$articulo->ean}} - {{$articulo->nombre}}</option>
+                                <option value="{{$articulo->id}}" precio="{{$articulo->precio}}">{{$articulo->ean}} -
+                                    {{$articulo->nombre}}</option>
                                 @endforeach
                             </select>
                         </td>
                         <td><input type="number" id="selectcantidad" class="form-control montos nocero"></td>
                         <td><input type="text" id="selectprecio" class="form-control" readonly></td>
-                        <td><input type="text" id="selecttotal" class="form-control"  readonly></td>
-                        <td> <button type="button" role="button" id="btnAddlabono" class="btn btn-success">Agregar</button> </td>
+                        <td><input type="text" id="selecttotal" class="form-control" readonly></td>
+                        <td> <button type="button" role="button" id="btnAddlabono"
+                                class="btn btn-success">Agregar</button> </td>
                     </tr>
                 </tbody>
             </table>
@@ -114,20 +120,21 @@
 
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-                    <a class="btn btn-primary align" style="margin:5px"  href="{{route('cobros.index')}}" role="button">Volver</a>
+                <a class="btn btn-primary align" style="margin:5px" href="{{route('cobros.index')}}"
+                    role="button">Volver</a>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button type="submit"  class="btn btn-success" style="margin:5px">Guardar</button>
-                {{-- <a class="btn btn-secondary" style="margin:5px" href="{{route('clientes.index')}}" role="button">Cancelar</a> --}}
+                <button type="submit" class="btn btn-success" style="margin:5px">Guardar</button>
+                {{-- <a class="btn btn-secondary" style="margin:5px" href="{{route('clientes.index')}}"
+                role="button">Cancelar</a> --}}
             </div>
         </div>
     </form>
 </div>
-
+</div>
 {{-- Funciones JavaScript JQuery --}}
 <script>
-
-// inicio ajax
+    // inicio ajax
 $(document).ready(function(){
         $("#selectcliente").change(function(){
             console.log('Seleccionando');
@@ -295,10 +302,6 @@ $(document).ready(function(){
         calculatotal();
     });
 
-
-
-
-
     //Function JQuery activa o desactiva monto del abono
     $('#btnDetalleAbono').click(function(){
         if($(this).hasClass('active')){
@@ -338,6 +341,16 @@ $(document).ready(function(){
     })
 
 
+        $(".decimales").focusout(function(){
+            if($(this).val()==''){
+                $(this).val('0');
+            }
+        })
+
+
+
+
+
 
     //funcion JQuery no 0 al ingresar primer caracter
     $(".nocero").on("input", function() {
@@ -356,18 +369,24 @@ $(document).ready(function(){
 
 </script>
 <style>
-.input-symbol-euro {
-    position: relative;
-}
-.input-symbol-euro input {
-    padding-left:18px;
-}
-.input-symbol-euro:before {
-    position: absolute;
-    top: 0;
-    content:"€";
-    left: 5px;
-}
+    .input-symbol-euro {
+        position: relative;
+    }
+
+    .input-symbol-euro input {
+        padding-left: 18px;
+    }
+
+    .input-symbol-euro:before {
+        position: absolute;
+        top: 0;
+        content: "€";
+        left: 5px;
+    }
+
+    .decimales {
+        text-align: right;
+    }
 </style>
 
 {{-- Fun Funciones JavaScript Jquery --}}

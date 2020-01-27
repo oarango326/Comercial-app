@@ -1,10 +1,11 @@
 @extends('layout')
 @section('contenido')
-<div class="jumbotron">
+<div class="container">
+    <div class="jumbotron">
         <h1 class="display-4">Gesticomer</h1>
         {{-- <p class="lead">Aplicacion web para gestion de Comerciales</p> --}}
         <hr class="my-4">
         <p> </p>
-      </div>
+    </div>
+</div>
 @stop
-

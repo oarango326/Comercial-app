@@ -1,5 +1,6 @@
 @extends('layout')
 @section('contenido')
+<div class="container">
 	<div class="row" >
         <div class="col-xs-3  d-flex justify-content-start" >
                 <h3 style="margin:5px">Visitas</h3>
@@ -67,5 +68,6 @@
             </script>
         @endif
     </div>
+</div>
     @include('visitas.visitasModal')
 @stop

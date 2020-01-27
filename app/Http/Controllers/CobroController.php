@@ -127,6 +127,7 @@ class CobroController extends Controller
     public function edit(Cobro $cobro)
     {
         //
+        return abort(404);
     }
 
     /**
@@ -139,6 +140,7 @@ class CobroController extends Controller
     public function update(Request $request, Cobro $cobro)
     {
         //
+        return redirect()->route('cobros.index');
     }
 
     /**

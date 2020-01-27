@@ -1,6 +1,6 @@
 @extends('layout')
 @section('contenido')
-	{{-- <div class="container"> --}}
+<div class="container">
     <h3>Nueva Visita</h3>
 	{{-- </div> --}}
 	{{-- <div class="container d-flex justify-content-start" > --}}
@@ -43,4 +43,5 @@
                     </tbody>
                 </table>
         @endif
+</div>
 @stop

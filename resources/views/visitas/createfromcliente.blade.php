@@ -1,6 +1,6 @@
 @extends('layout')
 @section('contenido')
-<div class="form-group">
+<div class="form-group container">
 	<h1>Nueva Visita a Cliente:</h1>
     <form action="{{route('visita.store')}}" method="POST">
     	{{ csrf_field() }}

@@ -1,19 +1,19 @@
 @extends('layout')
 @section('contenido')
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start">
+            <h3 style="margin:5px">Facturas</h3>
+        </div>
 
-<div class="row" >
-    <div class="col-xs-12 col-md-3 col-sm-3 col-lg-3 d-flex justify-content-start" >
-            <h3  style="margin:5px">Facturas</h3>
+        <div class="col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start">
+            <a class="btn btn-primary m-1" href="{{route('facturas.create')}}" role="button"
+                id="btnCreatecobro">Nuevo</a>
+        </div>
+
     </div>
 
-    <div class="col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start" >
-    <a class="btn btn-primary m-1"  href="{{route('facturas.create')}}" role="button"
-            id="btnCreatecobro">Nuevo</a>
-    </div>
-
-</div>
-
-@if (count($facturas)==0 || is_null($facturas))
+    @if (count($facturas)==0 || is_null($facturas))
     <hr>
     <h3>No hay Registros</h3>
     @else
@@ -44,26 +44,29 @@
                     <td>{{$factura->total}}€</td>
                     <td></td>
                     <td class="form-inline">
-                        <a href="{{route('facturas.show',$factura->id )}}" class="btn btn-primary btn-sm m-1 align-content-end">Ver</a>
+                        <a href="{{route('facturas.show',$factura->id )}}"
+                            class="btn btn-primary btn-sm m-1 align-content-end">Ver</a>
                         {{-- <form action="{{route('facturas.destroy', $factura->id )}}" method="post">
-                            {!!method_field('DELETE')!!}
-                            {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-danger btn-sm m-1 align-content-end">Borrar</button>
+                        {!!method_field('DELETE')!!}
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-danger btn-sm m-1 align-content-end">Borrar</button>
                         </form> --}}
-                    <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal" data-target="#modalDelete" data-id="{{$factura->id}}" data-nombre="FACTURA #">
+                        <button type="button" class="btn btn-danger btn-sm m-1 btnDelete" data-toggle="modal"
+                            data-target="#modalDelete" data-id="{{$factura->id}}" data-nombre="FACTURA #">
                             Eliminar
-                          </button>
+                        </button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-@endif
-@if(session()->has('info'))
+    @endif
+    @if(session()->has('info'))
     <script>
         alert('{{session('info')}}')
     </script>
-@endif
-@include('facturas.facturaModal')
+    @endif
+    @include('facturas.facturaModal')
+</div>
 @stop

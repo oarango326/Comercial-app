@@ -1,6 +1,6 @@
 @extends('layout')
 @section('contenido')
-<div class="form-group">
+<div class="form-group container">
 	<h1>Visita a Cliente:</h1>
     <form action="{{ route('visita.update',$visita->id) }}" method="post" >
     	{!!method_field('PUT')!!}
@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-6 form-inline">
                         <label for="lblcliente">Proxima Visita:</label>
-                        <input id="proxVisita" name="proxVisita" type="date" class="form-control" 
+                        <input id="proxVisita" name="proxVisita" type="date" class="form-control"
                         value="{{ $visita->proxVisita}}">
                         <span class="fieldleft">{{$errors->first('proxVisita')}}</span>
                     </div>
