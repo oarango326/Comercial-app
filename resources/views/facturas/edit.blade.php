@@ -53,7 +53,7 @@
                         <option value="1">ALBARAN</option>
                     </select>
                 </div>
-                <div class="col-xs-12 col-md-4 col-lg-2 col-xl-4">
+                <div class="col-xs-12 col-md-4 col-lg-2 col-xl-2">
                     <label for="lblnumdocumento">#Nota</label>
                     <input type="text" name="facnum" id="facnum" class="form-control" maxlength="10"
                         value="{{$factura->facnum}}" required>
@@ -63,6 +63,11 @@
                     <label for="lblmonto">Monto Nota</label>
                     <input style="text-align: right;" type="text" name="total" id="total" class="form-control montos"
                         value="{{$factura->total}}" required>
+                </div>
+                <div class="col-xs-12 col-md-4 col-lg-2 ">
+                    <label for="lblsaldo">Saldo Pendiente</label>
+                    <input style="text-align: right;" type="text" name="saldo" id="saldo"
+                        class="form-control montos decimales" value="{{$factura->saldo}}" readonly required>
                 </div>
                 {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
                 <label for="lblsaldo">Monto saldo</label>
@@ -112,6 +117,11 @@
     $('#selectcliente').change(function(){
         $('#direccion').val($(this).find(':selected').attr('direccion'));
         // console.log($(this).find(':selected').attr('direccion'));
+    })
+//function Jquery Refesca valor de saldo pendiente
+
+    $('#total').change(function(){
+        $('#saldo').val($(this).val());
     })
 
     //function jquery para imputs que manejen decimales

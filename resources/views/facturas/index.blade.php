@@ -8,7 +8,7 @@
 
         <div class="col-xs-12 col-sm-3 col-lg-3 offset-6 justify-content-start">
             <a class="btn btn-primary m-1" href="{{route('facturas.create')}}" role="button"
-                id="btnCreatecobro">Nuevo</a>
+                id="btnCreatecobro">Nueva Factura</a>
         </div>
 
     </div>
@@ -21,10 +21,10 @@
         <table class="table table-striped ">
             <thead>
                 <tr>
-                    <th style="width:5%">id</th>
+                    {{-- <th style="width:5%">id</th> --}}
                     <th style="width:5%">Fecha</th>
                     <th style="width:5%">Vence</th>
-                    <th style="width:20%">Cliente</th>
+                    <th style="width:25%">Cliente</th>
                     <th style="width:10%">Fabricante</th>
                     {{-- <th style="width:10%">Documento</th> --}}
                     <th style="width:10%">Monto</th>
@@ -35,7 +35,7 @@
             <tbody>
                 @foreach ($facturas as $factura)
                 <tr>
-                    <td>{{$factura->id}}</td>
+                    {{-- <td>{{$factura->id}}</td> --}}
                     <td>{{date('d/M/Y',strtotime($factura->facfecha))}}</td>
                     <td>{{date('d/M/Y',strtotime($factura->facfecha."+ 90 days"))}}</td>
                     <td>{{$factura->cliente->nombre}}</td>
