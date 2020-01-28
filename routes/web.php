@@ -62,7 +62,7 @@ Route::resource('cobros', 'CobroController');
 Route::resource('facturas', 'FacturaController');
 
 
-Route::get('facturasCliente/{cliente}', 'CobroController@FacturasCliente');
+Route::get('cobros/facturasCliente/{cliente}', ['as' => 'cobros.facturasCliente','uses'=> 'CobroController@FacturasCliente']);
 
 
 

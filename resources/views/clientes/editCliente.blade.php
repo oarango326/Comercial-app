@@ -1,7 +1,7 @@
 @extends('layout')
 @section('contenido')
 <div class="form-group align-center container">
-    <h1>Actualizar Cliente</h1>
+<h3>Actualizar Cliente # {{$cliente->id}}</h3>
     @if(session()->has('info'))
     {{session('info')}}
     <div class="row">
