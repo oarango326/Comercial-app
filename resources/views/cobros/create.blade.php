@@ -12,7 +12,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4form">
                 <label for="lblcliente">Cliente</label>
                 <select name="cliente_id" id="selectcliente" class="form-control "
-                    data-href="{{ url("/api/facturasCliente/")}}" required>
+                    data-href="{{ url("/facturasCliente/")}}" required>
                     <option disabled selected value=""> Seleccione un Cliente... </option>
                     @foreach ($clientes as $cliente)
                     <option value="{{$cliente->id}}"
