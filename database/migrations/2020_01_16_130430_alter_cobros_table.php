@@ -13,7 +13,7 @@ class AlterCobrosTable extends Migration
      */
     public function up()
     {
-        Schema::table('Cobros', function (Blueprint $table) {
+        Schema::table('cobros', function (Blueprint $table) {
             //
             $table->bigInteger('factura_id')->unsigned()->after('total')->nullable();
             $table->foreign('factura_id')->references('id')->on('facturas');
