@@ -62,11 +62,11 @@
         </table>
     </div>
     @endif
-    @if(session()->has('info'))
+    {{-- @if(session()->has('info'))
     <script>
         alert('{{session('info')}}')
     </script>
-    @endif
+    @endif --}}
     @include('facturas.facturaModal')
 </div>
 @stop

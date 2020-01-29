@@ -73,5 +73,5 @@
            });
         });
     });
-
+    setTimeout( "$('#session').hide();", 4000);
 </script>

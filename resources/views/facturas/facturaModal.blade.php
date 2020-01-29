@@ -34,4 +34,5 @@
             $('#modalDelete').find('#id-delete').val(id)
         });
     });
+    setTimeout( "$('#session').hide();", 4000);
 </script>

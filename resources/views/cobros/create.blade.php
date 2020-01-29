@@ -5,8 +5,7 @@
         <h3>Nuevo Cobro</h3>
     </div>
     <form action="{{route('cobros.store')}}" method="POST">
-        {{ csrf_field() }}
-
+        @csrf
         {{-- Inicio Encabezado Cobro --}}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4form">

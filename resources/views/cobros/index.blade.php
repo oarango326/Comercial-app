@@ -17,6 +17,11 @@
     <hr>
     <h3>No hay Registros</h3>
     @else
+    @if(session()->has('info'))
+    <div id="session" class="alert alert-success" role="alert">
+        <span>{{session('info')}}</span>
+    </div>
+    @endif
     <div class="row justify-content-center ">
         <table class="table table-striped table-responsive-xl table-responsive-sm">
             <thead>
@@ -68,11 +73,11 @@
     </table>
 </div>
 @endif
-@if(session()->has('info'))
+{{-- @if(session()->has('info'))
 <script>
     alert('{{session('info')}}')
 </script>
-@endif
+@endif --}}
 @include('cobros.cobrosModal')
 </div>
 @stop

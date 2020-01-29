@@ -94,9 +94,9 @@ class CobroController extends Controller
 
         }catch(\Exception $e){
             DB::rollback();
-            return $e->getmessage();
+            return redirect()->route('cobros.index')->with('info', $e->getmessage());
         }
-        return redirect()->route('cobros.index');
+        return redirect()->route('cobros.show', $cobro->id)->with('info','El cobro se ha guardado correctamente' );
     }
 
     /**

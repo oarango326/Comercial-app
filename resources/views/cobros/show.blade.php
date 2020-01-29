@@ -1,6 +1,11 @@
 @extends('layout')
 @section('contenido')
 <div class="container">
+    @if(session()->has('info'))
+    <div id="session" class="alert alert-success" role="alert">
+        <span>{{session('info')}}</span>
+    </div>
+    @endif
     <div>
         <h3>Cobro:# {{$cobro->id}}</h3>
     </div>
@@ -169,12 +174,13 @@
         return true;
     }
 
+    setTimeout( "$('#session').hide();", 4000);
 </script>
 {{-- Fun Funciones JavaScript Jquery --}}
-@if(session()->has('info'))
+{{-- @if(session()->has('info'))
 <script>
     alert('{{session('info')}}')
 </script>
-@endif
+@endif --}}
 
 @stop
