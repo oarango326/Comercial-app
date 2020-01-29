@@ -6,7 +6,7 @@ use App\Cobro;
 use App\Cliente;
 use App\Articulo;
 use App\DetalleCobro;
-use App\Factura;
+use App\factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 // use DB;
@@ -85,7 +85,7 @@ class CobroController extends Controller
                     }
                 }
                 if($request->factura_id){
-                    $factura=Factura::findorfail($request->factura_id);
+                    $factura=DB::table('facturas')->findorfail($request->factura_id);
                     $factura->saldo=$factura->saldo-($cobro->total+$cobro->abono);
                     $factura->save();
                 }
