@@ -35,8 +35,8 @@
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" id="divtipodocumento">
                 <label for="lbltipodocumento">Tipo Documento</label>
                 <select name="tipodocumento" id="tipodocumento" class="form-control">
-                    <option value="1">FACTURA</option>
-                    <option value="0">ALBARAN</option>
+                    <option value="0">FACTURA</option>
+                    <option value="1">ALBARAN</option>
                 </select>
             </div>
             <div class="col-xs-12 col-md-3 col-lg-3 col-xl-3" id="divnumdocumento">

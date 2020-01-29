@@ -179,8 +179,15 @@ class CobroController extends Controller
 
     public function FacturasCliente(Cliente $cliente)
     {
-        $facturasCliente=Cliente::findorfail($cliente->id)
-        ->Factura()->where('saldo','>',0)->get();
+        // $facturasCliente=Cliente::findorfail($cliente->id)
+        // ->Factura()->where('saldo','>',0)->get();
+        $facturasCliente=DB::table('facturas')
+        ->select('facturas.*')
+        ->join('clientes','facturas.cliente_id','=','clientes.id')
+        ->where('clientes.id','=',$cliente->id)
+        ->where('facturas.saldo','>',0)
+        ->get();
+
         if(empty($facturasCliente)){
             return response('',400);
         }
