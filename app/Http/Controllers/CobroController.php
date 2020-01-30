@@ -85,9 +85,10 @@ class CobroController extends Controller
                     }
                 }
                 if($request->factura_id){
-                    $factura=DB::table('facturas')->where('factura.id',$request->factura_id)->get();
-                    $factura->saldo=$factura->saldo-($cobro->total+$cobro->abono);
-                    $factura->save();
+                    $factura=new Factura();
+                    $fac= $factura->findorfail($cobro->factura_id);
+                    $fac->saldo=$fac->saldo-($cobro->total+$cobro->abono);
+                    $fac->save();
                 }
 
             DB::commit();
