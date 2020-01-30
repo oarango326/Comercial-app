@@ -9,6 +9,7 @@ use App\DetalleCobro;
 use App\factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 // use DB;
 
 class CobroController extends Controller
@@ -24,7 +25,6 @@ class CobroController extends Controller
         $cobros=Cobro::all();
         return view('cobros.index', compact('cobros'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -96,7 +96,11 @@ class CobroController extends Controller
         }catch(\Exception $e){
             DB::rollback();
             return redirect()->route('cobros.index')->with('info', $e->getmessage());
+        }catch(QueryException $e){
+            DB::rollback();
+            return redirect()->route('cobros.index')->with('info', $e->getmessage());
         }
+
         return redirect()->route('cobros.show', $cobro->id)->with('info','El cobro se ha guardado correctamente' );
     }
 
