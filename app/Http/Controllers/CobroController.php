@@ -119,7 +119,6 @@ class CobroController extends Controller
                         'articulos.codigo','articulos.nombre','detallecobros.cantidad',
                         'detallecobros.precio','detallecobros.total_linea')
                 ->join('articulos', 'articulos.id', '=', 'detallecobros.articulo_id')
-                ->from()
                 ->where ('detallecobros.cobro_id','=', $cobro->id)
                 ->get();
                 //return compact('cliente','cobro','detallecobro');
