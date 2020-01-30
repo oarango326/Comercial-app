@@ -115,10 +115,11 @@ class CobroController extends Controller
         //
         $cliente=Cobro::findorfail($cobro->id)->cliente()->get();
         $detallecobro=DB::table('detallecobros')
-                ->select('Articulos.ean','detallecobros.cobro_id','detallecobros.articulo_id',
+                ->select('articulos.ean','detallecobros.cobro_id','detallecobros.articulo_id',
                         'articulos.codigo','articulos.nombre','detallecobros.cantidad',
                         'detallecobros.precio','detallecobros.total_linea')
                 ->join('articulos', 'articulos.id', '=', 'detallecobros.articulo_id')
+                ->from()
                 ->where ('detallecobros.cobro_id','=', $cobro->id)
                 ->get();
                 //return compact('cliente','cobro','detallecobro');
