@@ -12189,3 +12189,22 @@ label {
   height: 100vh;
 }
 
+.input-symbol-euro {
+  position: relative;
+}
+
+.input-symbol-euro input {
+  padding-left: 18px;
+}
+
+.input-symbol-euro:before {
+  position: absolute;
+  top: 0;
+  content: "\20AC";
+  left: 5px;
+}
+
+.decimales {
+  text-align: right;
+}
+

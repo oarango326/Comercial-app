@@ -20,8 +20,9 @@ class FacturaController extends Controller
      public function index()
     {
         $fabricantes=Fabricante::all();
-        $facturas=Factura::orderby('facfecha','asc')->get();
-        return view('facturas.index', compact('facturas','fabricantes'));
+        $facturas=Factura::where('saldo','>',0)->orderby('facfecha','asc')->get();
+        $cobradas=Factura::where('saldo','=',0)->orderby('facfecha','asc')->get();
+        return view('facturas.index', compact('facturas','cobradas','fabricantes'));
     }
 
     /**

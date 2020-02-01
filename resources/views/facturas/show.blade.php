@@ -54,44 +54,18 @@
                 <input style="text-align: right;" type="text" name="saldo" id="saldo" class="form-control montos"
                     value="{{$factura->saldo}}" readonly>
             </div>
-            {{-- <div class="col-xs-12 col-md-4 col-lg-2 ">
-            <label for="lblsaldo">Monto saldo</label>
-            <input type="text" name="saldo" id="saldo" class="form-control montos calculo" readonly>
-        </div> --}}
-            {{-- <div class="col-xs-12 col-md-4 col-lg-4 ">
-            <label for="lbltipocobro">Tipo Cobro</label>
-            <select name="tipocobro" id="tipocobro" class="form-control">
-                <option value="efectivo">EFECTIVO</option>
-                <option value="pagare">PAGARE</option>
-            </select>
-        </div> --}}
         </div>
-        {{-- <div class="row">
-
-            <div class="col-xs-12 col-md-4 col-lg-4 ">
-                    <label for="lblmontoabono">Monto Abono</label>
-                    <input type="text" name="abono" id="abono" class="form-control montos calculo" value="0" >
-            </div>
-            <div class="col-xs-12 col-md-4 col-lg-4 ">
-                <label for="lbltotal">Total cobrado</label>
-                <input type="text" name="total" id="total"
-                class="form-control montos" value="0" readonly>
-            </div>
-        </div> --}}
-        {{-- <div class="row">
-            <div class="col-12 d-flex justify-content-start">
-                    <button type="button" id="btnDetalleAbono" class="btn btn-secondary m-2" role="button"></button>
-            </div>
-        </div> --}}
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
                 <a class="btn btn-primary align" style="margin:5px" href="{{route('facturas.index')}}"
                     role="button">Volver</a>
             </div>
+            @if($factura->saldo!=0)
             <div class="col-6 d-flex justify-content-end">
                 <a class="btn btn-primary align" style="margin:5px" href="{{route('facturas.edit',$factura->id)}}"
                     role="button">Modificar</a>
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -52,19 +52,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-md-4 col-lg-4 ">
+        <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lblmonto">Monto Nota</label>
-            <input type="text" name="monto" id="monto" class="form-control montos calculo" value="{{$cobro->monto}}"
+            <input type="text" name="monto" id="monto" class="form-control montos calculo decimales" value="{{$cobro->monto}}"
                 readonly>
         </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 ">
+        <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lblmontoabono">Monto Abono</label>
-            <input type="text" name="abono" id="abono" class="form-control montos calculo" value="{{$cobro->abono}}"
+            <input type="text" name="abono" id="abono" class="form-control montos calculo decimales" value="{{$cobro->abono}}"
                 readonly>
         </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 ">
+        <div class="col-xs-12 col-md-4 col-lg-2 ">
             <label for="lbltotal">Total cobrado</label>
-            <input type="text" name="total" id="total" class="form-control montos calculo" value="{{$cobro->total}}"
+            <input type="text" name="total" id="total" class="form-control montos calculo decimales"  value="{{$cobro->total}}"
                 readonly>
         </div>
     </div>
@@ -93,7 +93,6 @@
                     <td>{{$detalle->precio}} </td>
                     <td>{{$detalle->total_linea}} </td>
                 </tr>
-
                 @endforeach
             </tbody>
         </table>
@@ -176,11 +175,24 @@
 
     setTimeout( "$('#session').hide();", 4000);
 </script>
-{{-- Fun Funciones JavaScript Jquery --}}
-{{-- @if(session()->has('info'))
-<script>
-    alert('{{session('info')}}')
-</script>
-@endif --}}
+<style>
+    .input-symbol-euro {
+        position: relative;
+    }
 
+    .input-symbol-euro input {
+        padding-left: 18px;
+    }
+
+    .input-symbol-euro:before {
+        position: absolute;
+        top: 0;
+        content: "€";
+        left: 5px;
+    }
+
+    .decimales {
+        text-align: right;
+    }
+</style>
 @stop
